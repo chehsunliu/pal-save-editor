@@ -28,6 +28,7 @@ interface Player {
     boots: number;
     charm: number;
   };
+  abilities: number[];
 }
 
 const loadPlayer = (data: DataView): Player[] => {
@@ -38,9 +39,14 @@ const loadPlayer = (data: DataView): Player[] => {
     .map((_, index) => {
       const playerOffset = 2 * index;
 
-      const blocks = Array(17)
+      const statBlocks = Array(17)
         .fill(0)
-        .map((_, blockIndex) => data.getUint16(0x0244 + playerOffset + blockIndex * playerCount * 2, true));
+        .map((_, statBlockIndex) => data.getUint16(0x0244 + playerOffset + statBlockIndex * playerCount * 2, true));
+
+      const abilities = Array(32)
+        .fill(0)
+        .map((_, abilityIndex) => data.getUint16(0x037c + playerOffset + abilityIndex * playerCount * 2, true))
+        .filter((ability) => ability !== 0);
 
       const [
         level,
@@ -59,7 +65,7 @@ const loadPlayer = (data: DataView): Player[] => {
         resistance,
         movement,
         luck,
-      ] = blocks;
+      ] = statBlocks;
 
       return {
         stat: {
@@ -82,6 +88,7 @@ const loadPlayer = (data: DataView): Player[] => {
           boots,
           charm,
         },
+        abilities,
       };
     });
 };

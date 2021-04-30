@@ -11,6 +11,7 @@ test("GG", () => {
     money: 496348,
     players: {
       anu: {
+        abilities: [353, 352, 329, 318, 394, 308, 299, 302, 305, 304],
         equipment: {
           bodyArmor: 209,
           boots: 0,
@@ -33,6 +34,7 @@ test("GG", () => {
         },
       },
       dummy: {
+        abilities: [353, 329, 323, 374, 308, 298, 304],
         equipment: {
           bodyArmor: 215,
           boots: 244,
@@ -55,6 +57,7 @@ test("GG", () => {
         },
       },
       li: {
+        abilities: [296, 298, 299, 310, 311, 345, 346, 348, 349, 363, 392],
         equipment: {
           bodyArmor: 214,
           boots: 240,
@@ -77,6 +80,7 @@ test("GG", () => {
         },
       },
       lin: {
+        abilities: [298, 299, 337, 340, 341, 344, 394],
         equipment: {
           bodyArmor: 210,
           boots: 238,
@@ -99,6 +103,7 @@ test("GG", () => {
         },
       },
       queen: {
+        abilities: [295, 304, 299, 315, 320, 325, 389, 336, 302, 308],
         equipment: {
           bodyArmor: 210,
           boots: 243,
@@ -121,6 +126,33 @@ test("GG", () => {
         },
       },
       zhao: {
+        abilities: [
+          297,
+          300,
+          301,
+          303,
+          306,
+          307,
+          309,
+          312,
+          313,
+          314,
+          316,
+          317,
+          318,
+          319,
+          321,
+          322,
+          323,
+          327,
+          328,
+          330,
+          332,
+          333,
+          334,
+          335,
+          351,
+        ],
         equipment: {
           bodyArmor: 210,
           boots: 239,
