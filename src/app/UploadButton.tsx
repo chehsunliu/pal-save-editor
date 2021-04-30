@@ -16,7 +16,7 @@ const UploadButton = () => {
 
       console.log(e.target.result);
     };
-    reader.readAsText(e.target.files[0]);
+    reader.readAsArrayBuffer(e.target.files[0]);
   };
 
   return (
