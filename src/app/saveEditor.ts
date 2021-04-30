@@ -4,7 +4,21 @@ export interface Save {
   saveCount: number;
   playerCount: number;
   money: number;
-  stats: Record<PlayerKey, Stat>;
+  players: Record<PlayerKey, Player>;
+}
+
+interface Player {
+  stat: Stat;
+  equipment: Equipment;
+}
+
+interface Equipment {
+  helm: number;
+  cloak: number;
+  bodyArmor: number;
+  weapon: number;
+  boots: number;
+  charm: number;
 }
 
 interface Stat {
@@ -13,12 +27,6 @@ interface Stat {
   maxMana: number;
   health: number;
   mana: number;
-  helm: number;
-  cloak: number;
-  bodyArmor: number;
-  weapon: number;
-  boots: number;
-  charm: number;
   attackDamage: number;
   abilityPower: number;
   resistance: number;
@@ -26,7 +34,7 @@ interface Stat {
   luck: number;
 }
 
-const loadStats = (data: DataView): Stat[] => {
+const loadPlayer = (data: DataView): Player[] => {
   const playerCount = 6;
 
   return Array(playerCount)
@@ -58,41 +66,45 @@ const loadStats = (data: DataView): Stat[] => {
       ] = blocks;
 
       return {
-        level,
-        maxHealth,
-        maxMana,
-        health,
-        mana,
-        helm,
-        cloak,
-        bodyArmor,
-        weapon,
-        boots,
-        charm,
-        attackDamage,
-        abilityPower,
-        resistance,
-        movement,
-        luck,
+        stat: {
+          level,
+          maxHealth,
+          maxMana,
+          health,
+          mana,
+          attackDamage,
+          abilityPower,
+          resistance,
+          movement,
+          luck,
+        },
+        equipment: {
+          helm,
+          cloak,
+          bodyArmor,
+          weapon,
+          boots,
+          charm,
+        },
       };
     });
 };
 
 export const load = (buffer: ArrayBuffer): Save => {
   const data = new DataView(buffer);
-  const stats: Stat[] = loadStats(data);
+  const players: Player[] = loadPlayer(data);
 
   return {
     saveCount: data.getUint16(0x0000, true),
     playerCount: data.getUint16(0x0006, true) + 1,
     money: data.getUint32(0x0028, true),
-    stats: {
-      li: stats[0],
-      zhao: stats[1],
-      lin: stats[2],
-      queen: stats[3],
-      anu: stats[4],
-      dummy: stats[5],
+    players: {
+      li: players[0],
+      zhao: players[1],
+      lin: players[2],
+      queen: players[3],
+      anu: players[4],
+      dummy: players[5],
     },
   };
 };
