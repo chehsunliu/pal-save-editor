@@ -1,15 +1,10 @@
+type PlayerKey = "li" | "zhao" | "lin" | "queen" | "anu" | "dummy";
+
 export interface Save {
   saveCount: number;
   playerCount: number;
   money: number;
-  stats: {
-    li: Stat;
-    zhao: Stat;
-    lin: Stat;
-    queen: Stat;
-    anu: Stat;
-    dummy: Stat;
-  };
+  stats: Record<PlayerKey, Stat>;
 }
 
 interface Stat {
@@ -85,19 +80,19 @@ const loadStats = (data: DataView): Stat[] => {
 
 export const load = (buffer: ArrayBuffer): Save => {
   const data = new DataView(buffer);
-  const players: Stat[] = loadStats(data);
+  const stats: Stat[] = loadStats(data);
 
   return {
     saveCount: data.getUint16(0x0000, true),
     playerCount: data.getUint16(0x0006, true) + 1,
     money: data.getUint32(0x0028, true),
     stats: {
-      li: players[0],
-      zhao: players[1],
-      lin: players[2],
-      queen: players[3],
-      anu: players[4],
-      dummy: players[5],
+      li: stats[0],
+      zhao: stats[1],
+      lin: stats[2],
+      queen: stats[3],
+      anu: stats[4],
+      dummy: stats[5],
     },
   };
 };
