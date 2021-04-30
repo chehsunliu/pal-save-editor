@@ -19,6 +19,11 @@ interface Stat {
   health: number;
   mana: number;
   helm: number;
+  cloak: number;
+  bodyArmor: number;
+  weapon: number;
+  boots: number;
+  charm: number;
   attackDamage: number;
   abilityPower: number;
   resistance: number;
@@ -45,11 +50,11 @@ const loadStats = (data: DataView): Stat[] => {
         health,
         mana,
         helm,
-        ,
-        ,
-        ,
-        ,
-        ,
+        cloak,
+        bodyArmor,
+        weapon,
+        boots,
+        charm,
         attackDamage,
         abilityPower,
         resistance,
@@ -57,7 +62,24 @@ const loadStats = (data: DataView): Stat[] => {
         luck,
       ] = blocks;
 
-      return { level, maxHealth, maxMana, health, mana, helm, attackDamage, abilityPower, resistance, movement, luck };
+      return {
+        level,
+        maxHealth,
+        maxMana,
+        health,
+        mana,
+        helm,
+        cloak,
+        bodyArmor,
+        weapon,
+        boots,
+        charm,
+        attackDamage,
+        abilityPower,
+        resistance,
+        movement,
+        luck,
+      };
     });
 };
 
