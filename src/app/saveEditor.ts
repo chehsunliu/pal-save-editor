@@ -8,30 +8,26 @@ export interface Save {
 }
 
 interface Player {
-  stat: Stat;
-  equipment: Equipment;
-}
-
-interface Equipment {
-  helm: number;
-  cloak: number;
-  bodyArmor: number;
-  weapon: number;
-  boots: number;
-  charm: number;
-}
-
-interface Stat {
-  level: number;
-  maxHealth: number;
-  maxMana: number;
-  health: number;
-  mana: number;
-  attackDamage: number;
-  abilityPower: number;
-  resistance: number;
-  movement: number;
-  luck: number;
+  stat: {
+    level: number;
+    maxHealth: number;
+    maxMana: number;
+    health: number;
+    mana: number;
+    attackDamage: number;
+    abilityPower: number;
+    resistance: number;
+    movement: number;
+    luck: number;
+  };
+  equipment: {
+    helm: number;
+    cloak: number;
+    bodyArmor: number;
+    weapon: number;
+    boots: number;
+    charm: number;
+  };
 }
 
 const loadPlayer = (data: DataView): Player[] => {
