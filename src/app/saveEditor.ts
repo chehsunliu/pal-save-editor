@@ -5,6 +5,7 @@ export interface Save {
   playerCount: number;
   money: number;
   players: Record<PlayerKey, Player>;
+  inventory: Item[];
 }
 
 interface Player {
@@ -29,6 +30,12 @@ interface Player {
     charm: number;
   };
   abilities: number[];
+}
+
+interface Item {
+  id: number;
+  count: number;
+  used: number;
 }
 
 const loadPlayer = (data: DataView): Player[] => {
@@ -93,6 +100,18 @@ const loadPlayer = (data: DataView): Player[] => {
     });
 };
 
+const loadInventory = (data: DataView): Item[] => {
+  const items = Array(300)
+    .fill(0)
+    .map((_, index) => ({
+      id: data.getUint16(0x06c0 + index * 6, true),
+      count: data.getUint16(0x06c2 + index * 6, true),
+      used: data.getUint16(0x06c4 + index * 6, true),
+    }));
+  const firstZeroIdIndex = items.findIndex((item) => item.id === 0);
+  return items.slice(0, firstZeroIdIndex);
+};
+
 export const load = (buffer: ArrayBuffer): Save => {
   const data = new DataView(buffer);
   const players: Player[] = loadPlayer(data);
@@ -109,5 +128,6 @@ export const load = (buffer: ArrayBuffer): Save => {
       anu: players[4],
       dummy: players[5],
     },
+    inventory: loadInventory(data),
   };
 };
