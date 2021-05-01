@@ -118,7 +118,7 @@ export const load = (buffer: ArrayBuffer): Save => {
   return {
     gameProgress: {
       saveCount: data.getUint16(0x0000, true),
-      playerCount: data.getUint16(0x0006, true),
+      memberCount: data.getUint16(0x0006, true),
       money: data.getUint32(0x0028, true),
     },
     players: {

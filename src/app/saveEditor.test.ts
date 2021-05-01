@@ -8,7 +8,7 @@ test("GG", () => {
   const expected: Save = {
     gameProgress: {
       saveCount: 17,
-      playerCount: 2,
+      memberCount: 2,
       money: 496348,
     },
     players: {

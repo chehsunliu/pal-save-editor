@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface GameProgressState {
   saveCount: number;
-  playerCount: number;
+  memberCount: number;
   money: number;
 }
 
 const initialState: GameProgressState = {
   saveCount: 0,
-  playerCount: 0,
+  memberCount: 0,
   money: 0,
 };
 
@@ -16,11 +16,14 @@ const gameProgressSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
+    replaced: (state, action: PayloadAction<{ state: GameProgressState }>) => {
+      return action.payload.state;
+    },
     saveCountUpdated: (state, action: PayloadAction<{ count: number }>) => {
       state.saveCount = action.payload.count;
     },
-    playerCountUpdated: (state, action: PayloadAction<{ count: number }>) => {
-      state.playerCount = action.payload.count;
+    memberCountUpdated: (state, action: PayloadAction<{ count: number }>) => {
+      state.memberCount = action.payload.count;
     },
     moneyUpdated: (state, action: PayloadAction<{ money: number }>) => {
       state.money = action.payload.money;
@@ -28,5 +31,5 @@ const gameProgressSlice = createSlice({
   },
 });
 
-export const { saveCountUpdated, playerCountUpdated, moneyUpdated } = gameProgressSlice.actions;
+export const { replaced, saveCountUpdated, memberCountUpdated, moneyUpdated } = gameProgressSlice.actions;
 export default gameProgressSlice.reducer;
