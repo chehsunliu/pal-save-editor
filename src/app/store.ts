@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import gameReducer from "app/game/gameSlice";
+import gameProgressReducer from "app/gameProgress/slice";
 
 export const store = configureStore({
   reducer: {
-    game: gameReducer,
+    game: gameProgressReducer,
   },
 });
 

@@ -3,7 +3,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Header from "app/Header";
 import { Container, Grid, Typography } from "@material-ui/core";
 import StatCard from "app/StatCard";
-import GameProgress from "app/game/GameProgress";
+import GameProgress from "app/gameProgress/GameProgress";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

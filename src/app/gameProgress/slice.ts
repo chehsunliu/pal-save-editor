@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface GameState {
+interface GameProgressState {
   saveCount: number;
   playerCount: number;
   money: number;
 }
 
-const initialState: GameState = {
+const initialState: GameProgressState = {
   saveCount: 0,
   playerCount: 0,
   money: 0,
 };
 
-const gameSlice = createSlice({
+const gameProgressSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
@@ -28,5 +28,5 @@ const gameSlice = createSlice({
   },
 });
 
-export const { saveCountUpdated, playerCountUpdated, moneyUpdated } = gameSlice.actions;
-export default gameSlice.reducer;
+export const { saveCountUpdated, playerCountUpdated, moneyUpdated } = gameProgressSlice.actions;
+export default gameProgressSlice.reducer;
