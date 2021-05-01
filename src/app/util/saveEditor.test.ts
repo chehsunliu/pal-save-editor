@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { load, Save } from "app/saveEditor";
+import { load, Save } from "app/util/saveEditor";
 
 test("GG", () => {
   const nodeBuffer = readFileSync(`${__dirname}/__tests__/2.RPG`);

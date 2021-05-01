@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { GameProgress } from "app/saveEditor";
+import { GameProgress } from "app/util/saveEditor";
 
 const initialState: GameProgress = {
   saveCount: 0,

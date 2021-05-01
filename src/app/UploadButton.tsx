@@ -1,7 +1,7 @@
 import React from "react";
 import { IconButton } from "@material-ui/core";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
-import * as saveEditor from "app/saveEditor";
+import * as saveEditor from "app/util/saveEditor";
 import { useAppDispatch } from "app/hook";
 import { replaced as gameProgressReplaced } from "app/gameProgress/slice";
 
