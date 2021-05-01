@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <Toolbar>
       <Typography className={classes.title} variant="h3">
-        PAL Save Editor
+        仙劍奇俠傳1 存檔修改器
       </Typography>
       <UploadButton />
     </Toolbar>
