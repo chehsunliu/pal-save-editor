@@ -1,12 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { GameProgress } from "app/saveEditor";
 
-export interface GameProgressState {
-  saveCount: number;
-  memberCount: number;
-  money: number;
-}
-
-const initialState: GameProgressState = {
+const initialState: GameProgress = {
   saveCount: 0,
   memberCount: 0,
   money: 0,
@@ -16,7 +11,7 @@ const gameProgressSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
-    replaced: (state, action: PayloadAction<{ state: GameProgressState }>) => {
+    replaced: (state, action: PayloadAction<{ state: GameProgress }>) => {
       return action.payload.state;
     },
     saveCountUpdated: (state, action: PayloadAction<{ count: number }>) => {

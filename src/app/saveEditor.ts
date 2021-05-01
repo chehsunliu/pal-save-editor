@@ -1,11 +1,15 @@
-import { GameProgressState } from "app/gameProgress/slice";
-
 type PlayerKey = "li" | "zhao" | "lin" | "queen" | "anu" | "dummy";
 
 export interface Save {
-  gameProgress: GameProgressState;
+  gameProgress: GameProgress;
   players: Record<PlayerKey, Player>;
   inventory: Item[];
+}
+
+export interface GameProgress {
+  saveCount: number;
+  memberCount: number;
+  money: number;
 }
 
 interface Player {
