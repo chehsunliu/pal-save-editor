@@ -1,8 +1,7 @@
 import React from "react";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Header from "app/Header";
-import { Container, Grid, Typography } from "@material-ui/core";
-import StatCard from "app/StatCard";
+import { Container } from "@material-ui/core";
 import GameProgress from "app/gameProgress/GameProgress";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,26 +23,6 @@ const App = () => {
       <Header />
       <div className={classes.main}>
         <GameProgress />
-        <Typography variant="h4" gutterBottom>
-          Stats
-        </Typography>
-        <Grid container spacing={2}>
-          <Grid item md={4}>
-            <StatCard name="李逍遙" />
-          </Grid>
-          <Grid item md={4}>
-            <StatCard name="趙靈兒" />
-          </Grid>
-          <Grid item md={4}>
-            <StatCard name="林月如" />
-          </Grid>
-          <Grid item md={4}>
-            <StatCard name="巫后" />
-          </Grid>
-          <Grid item md={4}>
-            <StatCard name="阿奴" />
-          </Grid>
-        </Grid>
       </div>
     </Container>
   );
