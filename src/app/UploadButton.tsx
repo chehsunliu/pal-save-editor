@@ -1,6 +1,6 @@
 import React from "react";
 import { IconButton } from "@material-ui/core";
-import InsertDriveFileIcon from "@material-ui/icons/InsertDriveFile";
+import AttachFileIcon from "@material-ui/icons/AttachFile";
 
 const UploadButton = () => {
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,7 @@ const UploadButton = () => {
 
   return (
     <IconButton color="inherit" component="label">
-      <InsertDriveFileIcon />
+      <AttachFileIcon />
       <input type="file" hidden onChange={handleFileUpload} />
     </IconButton>
   );
