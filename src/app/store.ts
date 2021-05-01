@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import gameProgressReducer from "app/gameProgress/slice";
+import gameProgressReducer from "app/feature/gameProgress/slice";
 
 export const store = configureStore({
   reducer: {

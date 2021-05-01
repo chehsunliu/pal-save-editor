@@ -1,8 +1,8 @@
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import Header from "app/Header";
+import Header from "app/feature/header/Header";
 import { Container } from "@material-ui/core";
-import GameProgress from "app/gameProgress/GameProgress";
+import GameProgress from "app/feature/gameProgress/GameProgress";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

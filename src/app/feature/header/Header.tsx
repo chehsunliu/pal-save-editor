@@ -1,6 +1,6 @@
 import { Toolbar, Typography } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import UploadButton from "app/UploadButton";
+import UploadButton from "app/feature/header/UploadButton";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
