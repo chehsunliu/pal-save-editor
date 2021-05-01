@@ -6,9 +6,11 @@ test("GG", () => {
   const save = load(nodeBuffer.buffer);
 
   const expected: Save = {
-    saveCount: 17,
-    playerCount: 3,
-    money: 496348,
+    gameProgress: {
+      saveCount: 17,
+      playerCount: 2,
+      money: 496348,
+    },
     players: {
       anu: {
         abilities: [353, 352, 329, 318, 394, 308, 299, 302, 305, 304],

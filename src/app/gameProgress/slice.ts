@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface GameProgressState {
+export interface GameProgressState {
   saveCount: number;
   playerCount: number;
   money: number;

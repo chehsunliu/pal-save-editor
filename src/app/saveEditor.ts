@@ -1,9 +1,9 @@
+import { GameProgressState } from "app/gameProgress/slice";
+
 type PlayerKey = "li" | "zhao" | "lin" | "queen" | "anu" | "dummy";
 
 export interface Save {
-  saveCount: number;
-  playerCount: number;
-  money: number;
+  gameProgress: GameProgressState;
   players: Record<PlayerKey, Player>;
   inventory: Item[];
 }
@@ -116,9 +116,11 @@ export const load = (buffer: ArrayBuffer): Save => {
   const players: Player[] = loadPlayer(data);
 
   return {
-    saveCount: data.getUint16(0x0000, true),
-    playerCount: data.getUint16(0x0006, true) + 1,
-    money: data.getUint32(0x0028, true),
+    gameProgress: {
+      saveCount: data.getUint16(0x0000, true),
+      playerCount: data.getUint16(0x0006, true),
+      money: data.getUint32(0x0028, true),
+    },
     players: {
       li: players[0],
       zhao: players[1],
