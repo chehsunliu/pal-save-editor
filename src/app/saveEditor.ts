@@ -101,15 +101,14 @@ const loadPlayer = (data: DataView): Player[] => {
 };
 
 const loadInventory = (data: DataView): Item[] => {
-  const items = Array(300)
+  return Array(256)
     .fill(0)
     .map((_, index) => ({
       id: data.getUint16(0x06c0 + index * 6, true),
       count: data.getUint16(0x06c2 + index * 6, true),
       used: data.getUint16(0x06c4 + index * 6, true),
-    }));
-  const firstZeroIdIndex = items.findIndex((item) => item.id === 0);
-  return items.slice(0, firstZeroIdIndex);
+    }))
+    .filter((item) => item.id !== 0);
 };
 
 export const load = (buffer: ArrayBuffer): Save => {
