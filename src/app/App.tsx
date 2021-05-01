@@ -3,6 +3,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Header from "app/Header";
 import { Container, Grid, Typography } from "@material-ui/core";
 import StatCard from "app/StatCard";
+import GameProgress from "app/game/GameProgress";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,6 +23,7 @@ const App = () => {
     <Container maxWidth="md" className={classes.root}>
       <Header />
       <div className={classes.main}>
+        <GameProgress />
         <Typography variant="h4" gutterBottom>
           Stats
         </Typography>
