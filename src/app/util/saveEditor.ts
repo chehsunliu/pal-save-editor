@@ -1,4 +1,5 @@
-export type CharacterKey = "li" | "zhao" | "lin" | "queen" | "anu" | "dummy";
+export const characterKeys = ["li", "zhao", "lin", "queen", "anu", "dummy"] as const;
+export type CharacterKey = typeof characterKeys[number];
 
 export interface Save {
   gameProgress: GameProgress;
@@ -15,18 +16,7 @@ export interface GameProgress {
 export type Characters = Record<CharacterKey, Character>;
 
 export interface Character {
-  stat: {
-    level: number;
-    maxHealth: number;
-    maxMana: number;
-    health: number;
-    mana: number;
-    attackDamage: number;
-    abilityPower: number;
-    resistance: number;
-    movement: number;
-    luck: number;
-  };
+  stat: CharacterStat;
   equipment: {
     helm: number;
     cloak: number;
@@ -36,6 +26,19 @@ export interface Character {
     charm: number;
   };
   abilities: number[];
+}
+
+export interface CharacterStat {
+  level: number;
+  maxHealth: number;
+  maxMana: number;
+  health: number;
+  mana: number;
+  attackDamage: number;
+  abilityPower: number;
+  resistance: number;
+  movement: number;
+  luck: number;
 }
 
 interface Item {

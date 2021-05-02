@@ -20,7 +20,7 @@ const App = () => {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="md" className={classes.root}>
+    <Container maxWidth="lg" className={classes.root}>
       <Header />
       <div className={classes.main}>
         <GameProgress />
