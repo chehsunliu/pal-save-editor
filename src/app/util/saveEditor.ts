@@ -2,7 +2,7 @@ type PlayerKey = "li" | "zhao" | "lin" | "queen" | "anu" | "dummy";
 
 export interface Save {
   gameProgress: GameProgress;
-  players: Record<PlayerKey, Player>;
+  characters: Record<PlayerKey, Character>;
   inventory: Item[];
 }
 
@@ -12,7 +12,7 @@ export interface GameProgress {
   money: number;
 }
 
-interface Player {
+interface Character {
   stat: {
     level: number;
     maxHealth: number;
@@ -42,21 +42,23 @@ interface Item {
   used: number;
 }
 
-const loadPlayer = (data: DataView): Player[] => {
-  const playerCount = 6;
+const loadCharacters = (data: DataView): Character[] => {
+  const characterCount = 6;
 
-  return Array(playerCount)
+  return Array(characterCount)
     .fill(0)
     .map((_, index) => {
-      const playerOffset = 2 * index;
+      const characterOffset = 2 * index;
 
       const statBlocks = Array(17)
         .fill(0)
-        .map((_, statBlockIndex) => data.getUint16(0x0244 + playerOffset + statBlockIndex * playerCount * 2, true));
+        .map((_, statBlockIndex) =>
+          data.getUint16(0x0244 + characterOffset + statBlockIndex * characterCount * 2, true)
+        );
 
       const abilities = Array(32)
         .fill(0)
-        .map((_, abilityIndex) => data.getUint16(0x037c + playerOffset + abilityIndex * playerCount * 2, true))
+        .map((_, abilityIndex) => data.getUint16(0x037c + characterOffset + abilityIndex * characterCount * 2, true))
         .filter((ability) => ability !== 0);
 
       const [
@@ -117,7 +119,7 @@ const loadInventory = (data: DataView): Item[] => {
 
 export const load = (buffer: ArrayBuffer): Save => {
   const data = new DataView(buffer);
-  const players: Player[] = loadPlayer(data);
+  const characters: Character[] = loadCharacters(data);
 
   return {
     gameProgress: {
@@ -125,13 +127,13 @@ export const load = (buffer: ArrayBuffer): Save => {
       memberCount: data.getUint16(0x0006, true),
       money: data.getUint32(0x0028, true),
     },
-    players: {
-      li: players[0],
-      zhao: players[1],
-      lin: players[2],
-      queen: players[3],
-      anu: players[4],
-      dummy: players[5],
+    characters: {
+      li: characters[0],
+      zhao: characters[1],
+      lin: characters[2],
+      queen: characters[3],
+      anu: characters[4],
+      dummy: characters[5],
     },
     inventory: loadInventory(data),
   };

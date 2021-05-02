@@ -11,7 +11,7 @@ test("GG", () => {
       memberCount: 2,
       money: 496348,
     },
-    players: {
+    characters: {
       anu: {
         abilities: [353, 352, 329, 318, 394, 308, 299, 302, 305, 304],
         equipment: {
