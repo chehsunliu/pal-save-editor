@@ -5,6 +5,7 @@ import { useAppDispatch } from "app/hook";
 import { replaced as gameProgressReplaced } from "app/feature/gameProgress/gameProgressSlice";
 import { replaced as charactersReplaced } from "app/feature/characters/charactersSlice";
 import { filenameUpdated } from "app/feature/header/rawSlice";
+import { saveBinary } from "app/util/storage";
 
 const ImportSaveButton = (props: ButtonProps<"label">) => {
   const dispatch = useAppDispatch();
@@ -27,6 +28,7 @@ const ImportSaveButton = (props: ButtonProps<"label">) => {
       }
 
       const save = saveEditor.load(buffer);
+      saveBinary(targetFile.name, buffer);
       dispatch(gameProgressReplaced({ state: save.gameProgress }));
       dispatch(charactersReplaced({ state: save.characters }));
       dispatch(filenameUpdated({ filename: targetFile.name }));

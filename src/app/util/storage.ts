@@ -1,10 +1,8 @@
-const storageKey = "bufferBase64";
-
-export const saveSaveBinary = (buffer: ArrayBuffer) => {
+export const saveBinary = (storageKey: string, buffer: ArrayBuffer) => {
   localStorage.setItem(storageKey, btoa(String.fromCharCode(...Array.from(new Uint8Array(buffer)))));
 };
 
-export const loadSaveBinaryAsArrayBuffer = (): ArrayBuffer | null => {
+export const loadBinaryAsArrayBuffer = (storageKey: string): ArrayBuffer | null => {
   const b64blob = localStorage.getItem(storageKey);
   if (b64blob === null) {
     return null;
