@@ -50,9 +50,11 @@ interface Item {
 const SAVE_COUNT_ADDR = 0x000;
 const MEMBER_COUNT_ADDR = 0x0006;
 const MONEY_ADDR = 0x0028;
+const STATS_ADDR = 0x0244;
+const ABILITIES_ADDR = 0x037c;
 
 const loadCharacters = (data: DataView): Character[] => {
-  const characterCount = 6;
+  const characterCount = characterIds.length;
 
   return Array(characterCount)
     .fill(0)
@@ -62,12 +64,14 @@ const loadCharacters = (data: DataView): Character[] => {
       const statBlocks = Array(17)
         .fill(0)
         .map((_, statBlockIndex) =>
-          data.getUint16(0x0244 + characterOffset + statBlockIndex * characterCount * 2, true)
+          data.getUint16(STATS_ADDR + characterOffset + statBlockIndex * characterCount * 2, true)
         );
 
       const abilities = Array(32)
         .fill(0)
-        .map((_, abilityIndex) => data.getUint16(0x037c + characterOffset + abilityIndex * characterCount * 2, true))
+        .map((_, abilityIndex) =>
+          data.getUint16(ABILITIES_ADDR + characterOffset + abilityIndex * characterCount * 2, true)
+        )
         .filter((ability) => ability !== 0);
 
       const [
@@ -136,20 +140,55 @@ export const load = (buffer: ArrayBuffer): Save => {
       memberCount: data.getUint16(MEMBER_COUNT_ADDR, true),
       money: data.getUint32(MONEY_ADDR, true),
     },
-    characters: {
-      li: characters[0],
-      zhao: characters[1],
-      lin: characters[2],
-      queen: characters[3],
-      anu: characters[4],
-      dummy: characters[5],
-    },
+    characters: Object.fromEntries(characterIds.map((id, index) => [id, characters[index]])) as Characters,
     inventory: loadInventory(data),
   };
 };
 
+const overwriteGameProgress = (buffer: ArrayBuffer, gameProgress: GameProgress) => {
+  new Uint16Array(buffer, SAVE_COUNT_ADDR, 2)[0] = gameProgress.saveCount;
+  new Uint16Array(buffer, MEMBER_COUNT_ADDR, 2)[0] = gameProgress.memberCount;
+  new Uint32Array(buffer, MONEY_ADDR, 4)[0] = gameProgress.money;
+};
+
+const overwriteCharacters = (buffer: ArrayBuffer, characters: Characters) => {
+  const characterCount = characterIds.length;
+  const characterArray: Character[] = characterIds.map((id) => characters[id]);
+
+  characterArray.forEach((character, index) => {
+    const characterOffset = 2 * index;
+
+    const values = [
+      character.stat.level,
+      character.stat.maxHealth,
+      character.stat.maxMana,
+      character.stat.health,
+      character.stat.mana,
+      character.equipment.helm,
+      character.equipment.cloak,
+      character.equipment.bodyArmor,
+      character.equipment.weapon,
+      character.equipment.boots,
+      character.equipment.charm,
+      character.stat.attackDamage,
+      character.stat.abilityPower,
+      character.stat.resistance,
+      character.stat.movement,
+      character.stat.luck,
+    ];
+
+    values.forEach((value, valueIndex) => {
+      new Uint16Array(buffer, STATS_ADDR + characterOffset + valueIndex * characterCount * 2, 2)[0] = value;
+    });
+
+    const abilities: number[] = [...character.abilities, ...Array(32 - character.abilities.length).fill(0)];
+    abilities.forEach((ability, abilityIndex) => {
+      new Uint16Array(buffer, ABILITIES_ADDR + characterOffset + abilityIndex * characterCount * 2, 2)[0] = ability;
+    });
+  });
+};
+
 export const overwrite = (buffer: ArrayBuffer, save: Save) => {
-  new Uint16Array(buffer, SAVE_COUNT_ADDR, 2)[0] = save.gameProgress.saveCount;
-  new Uint16Array(buffer, MEMBER_COUNT_ADDR, 2)[0] = save.gameProgress.memberCount;
-  new Uint32Array(buffer, MONEY_ADDR, 4)[0] = save.gameProgress.money;
+  overwriteGameProgress(buffer, save.gameProgress);
+  overwriteCharacters(buffer, save.characters);
 };
