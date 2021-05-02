@@ -1,5 +1,5 @@
 import { Card, CardContent, TextField, Typography } from "@material-ui/core";
-import { CharacterKey, CharacterStat } from "app/util/saveEditor";
+import { CharacterId, CharacterStat } from "app/util/saveEditor";
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { useAppDispatch, useAppSelector } from "app/hook";
@@ -43,20 +43,20 @@ const CustomField = (props: CustomFieldProps) => {
 
 interface CharacterCardProps {
   name: string;
-  characterKey: CharacterKey;
+  characterId: CharacterId;
 }
 
 const CharacterCard = (props: CharacterCardProps) => {
   const characters = useAppSelector((state) => state.characters);
   const dispatch = useAppDispatch();
 
-  const { characterKey, name } = props;
-  const { stat } = characters[characterKey];
+  const { characterId, name } = props;
+  const { stat } = characters[characterId];
 
   const handleStatUpdate = (field: keyof CharacterStat) => (value: number) => {
     const newStat = { ...stat };
     newStat[field] = value;
-    dispatch(statUpdated({ id: characterKey, stat: newStat }));
+    dispatch(statUpdated({ id: characterId, stat: newStat }));
   };
 
   return (

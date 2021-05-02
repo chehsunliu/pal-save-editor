@@ -2,7 +2,7 @@ import { Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import CharacterCard from "app/feature/characters/CharcterCard";
-import { CharacterKey, characterKeys } from "app/util/saveEditor";
+import { CharacterId, characterIds } from "app/util/saveEditor";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const nameMap: Record<CharacterKey, string> = {
+const nameMap: Record<CharacterId, string> = {
   li: "李逍遙",
   zhao: "趙靈兒",
   lin: "林月如",
@@ -25,9 +25,9 @@ const Characters = () => {
   const classes = useStyles();
 
   const renderCharacterCards = () =>
-    characterKeys.map((k) => (
+    characterIds.map((k) => (
       <Grid item xs={4} key={k}>
-        <CharacterCard name={nameMap[k]} characterKey={k} />
+        <CharacterCard name={nameMap[k]} characterId={k} />
       </Grid>
     ));
 

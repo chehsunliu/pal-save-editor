@@ -1,5 +1,5 @@
-export const characterKeys = ["li", "zhao", "lin", "queen", "anu", "dummy"] as const;
-export type CharacterKey = typeof characterKeys[number];
+export const characterIds = ["li", "zhao", "lin", "queen", "anu", "dummy"] as const;
+export type CharacterId = typeof characterIds[number];
 
 export interface Save {
   gameProgress: GameProgress;
@@ -13,7 +13,7 @@ export interface GameProgress {
   money: number;
 }
 
-export type Characters = Record<CharacterKey, Character>;
+export type Characters = Record<CharacterId, Character>;
 
 export interface Character {
   stat: CharacterStat;

@@ -1,4 +1,4 @@
-import { Character, CharacterKey, Characters, CharacterStat } from "app/util/saveEditor";
+import { Character, CharacterId, Characters, CharacterStat } from "app/util/saveEditor";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const emptyCharacter: Character = {
@@ -41,7 +41,7 @@ const charactersSlice = createSlice({
     replaced: (state, action: PayloadAction<{ state: Characters }>) => {
       return action.payload.state;
     },
-    statUpdated: (state, action: PayloadAction<{ id: CharacterKey; stat: CharacterStat }>) => {
+    statUpdated: (state, action: PayloadAction<{ id: CharacterId; stat: CharacterStat }>) => {
       state[action.payload.id].stat = action.payload.stat;
     },
   },
