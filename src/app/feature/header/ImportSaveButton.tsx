@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, ButtonProps } from "@material-ui/core";
-import * as saveEditor from "app/util/saveEditor";
+import * as saveEditor from "app/util/editor";
 import { useAppDispatch } from "app/hook";
 import { replaced as gameProgressReplaced } from "app/feature/gameProgress/gameProgressSlice";
 import { replaced as charactersReplaced } from "app/feature/characters/charactersSlice";

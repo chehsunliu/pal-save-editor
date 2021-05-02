@@ -1,5 +1,5 @@
 import { Card, CardContent, TextField, Typography } from "@material-ui/core";
-import { CharacterId, CharacterStat } from "app/util/saveEditor";
+import { CharacterId, CharacterStat } from "app/util/editor";
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { useAppDispatch, useAppSelector } from "app/hook";

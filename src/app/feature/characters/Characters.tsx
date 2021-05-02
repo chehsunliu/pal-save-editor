@@ -2,7 +2,7 @@ import { Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import CharacterCard from "app/feature/characters/CharcterCard";
-import { CharacterId, characterIds } from "app/util/saveEditor";
+import { CharacterId, characterIds } from "app/util/editor";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

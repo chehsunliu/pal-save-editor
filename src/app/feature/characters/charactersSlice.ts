@@ -1,4 +1,4 @@
-import { Character, CharacterId, Characters, CharacterStat } from "app/util/saveEditor";
+import { Character, CharacterId, Characters, CharacterStat } from "app/util/editor";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const emptyCharacter: Character = {
