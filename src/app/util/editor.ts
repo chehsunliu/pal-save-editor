@@ -4,7 +4,7 @@ export type CharacterId = typeof characterIds[number];
 export interface Save {
   gameProgress: GameProgress;
   characters: Characters;
-  inventory: Item[];
+  inventory: Inventory;
 }
 
 export interface GameProgress {
@@ -40,6 +40,8 @@ export interface CharacterStat {
   movement: number;
   luck: number;
 }
+
+export type Inventory = Item[];
 
 interface Item {
   id: number;
