@@ -1,6 +1,6 @@
 # PAL Save Editor
 
-https://chehsunliu.github.io/pal-save-editor/ 。
+https://chehsunliu.github.io/pal-save-editor/
 
 An saved game editor for The Legend of Sword and Fairy (Chinese Paladin) in MS-DOS (haven't tested for the 98 version yet). This is a purely static website written in React. No programs are required to download and install in our local machine.
 
