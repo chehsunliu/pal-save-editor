@@ -1,11 +1,11 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+import { Button, ButtonProps } from "@material-ui/core";
 import * as saveEditor from "app/util/saveEditor";
 import { useAppDispatch } from "app/hook";
 import { replaced as gameProgressReplaced } from "app/feature/gameProgress/gameProgressSlice";
 import { replaced as charactersReplaced } from "app/feature/characters/charactersSlice";
 
-const UploadButton = () => {
+const ImportSaveButton = (props: ButtonProps<"label">) => {
   const dispatch = useAppDispatch();
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,11 +32,11 @@ const UploadButton = () => {
   };
 
   return (
-    <Button color="inherit" component="label">
-      讀檔
+    <Button {...props} component="label">
+      {props.children}
       <input type="file" accept=".RPG" hidden onChange={handleFileUpload} />
     </Button>
   );
 };
 
-export default UploadButton;
+export default ImportSaveButton;

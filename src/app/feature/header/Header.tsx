@@ -1,6 +1,7 @@
-import { ButtonGroup, Toolbar, Typography } from "@material-ui/core";
+import { Button, ButtonGroup, Toolbar, Typography } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import UploadButton from "app/feature/header/UploadButton";
+import ImportSaveButton from "app/feature/header/ImportSaveButton";
+import React from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,8 +19,8 @@ const Header = () => {
       <Typography className={classes.title} variant="h3">
         仙劍奇俠傳1 存檔修改器
       </Typography>
-      <ButtonGroup variant="contained" color="primary">
-        <UploadButton />
+      <ButtonGroup color="primary">
+        <ImportSaveButton>輸入檔案</ImportSaveButton>
       </ButtonGroup>
     </Toolbar>
   );
