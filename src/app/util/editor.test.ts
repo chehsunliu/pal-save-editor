@@ -1,7 +1,23 @@
 import { readFileSync } from "fs";
-import { load, Save } from "app/util/editor";
+import { load, overwrite, Save } from "app/util/editor";
 
-test("GG", () => {
+test("overwrite buffer", () => {
+  const nodeBuffer = readFileSync(`${__dirname}/__tests__/2.RPG`);
+  const arrayBuffer = nodeBuffer.buffer;
+  const save = load(arrayBuffer);
+
+  save.gameProgress = {
+    saveCount: 12,
+    memberCount: 3,
+    money: 1234,
+  };
+  overwrite(arrayBuffer, save);
+
+  const newSave = load(arrayBuffer);
+  expect(newSave).toEqual(save);
+});
+
+test("load buffer", () => {
   const nodeBuffer = readFileSync(`${__dirname}/__tests__/2.RPG`);
   const save = load(nodeBuffer.buffer);
 

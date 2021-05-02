@@ -47,6 +47,10 @@ interface Item {
   used: number;
 }
 
+const SAVE_COUNT_ADDR = 0x000;
+const MEMBER_COUNT_ADDR = 0x0006;
+const MONEY_ADDR = 0x0028;
+
 const loadCharacters = (data: DataView): Character[] => {
   const characterCount = 6;
 
@@ -128,9 +132,9 @@ export const load = (buffer: ArrayBuffer): Save => {
 
   return {
     gameProgress: {
-      saveCount: data.getUint16(0x0000, true),
-      memberCount: data.getUint16(0x0006, true),
-      money: data.getUint32(0x0028, true),
+      saveCount: data.getUint16(SAVE_COUNT_ADDR, true),
+      memberCount: data.getUint16(MEMBER_COUNT_ADDR, true),
+      money: data.getUint32(MONEY_ADDR, true),
     },
     characters: {
       li: characters[0],
@@ -142,4 +146,10 @@ export const load = (buffer: ArrayBuffer): Save => {
     },
     inventory: loadInventory(data),
   };
+};
+
+export const overwrite = (buffer: ArrayBuffer, save: Save) => {
+  new Uint16Array(buffer, SAVE_COUNT_ADDR, 2)[0] = save.gameProgress.saveCount;
+  new Uint16Array(buffer, MEMBER_COUNT_ADDR, 2)[0] = save.gameProgress.memberCount;
+  new Uint32Array(buffer, MONEY_ADDR, 4)[0] = save.gameProgress.money;
 };
