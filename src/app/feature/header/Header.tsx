@@ -1,4 +1,4 @@
-import { Toolbar, Typography } from "@material-ui/core";
+import { ButtonGroup, Toolbar, Typography } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import UploadButton from "app/feature/header/UploadButton";
 
@@ -18,7 +18,9 @@ const Header = () => {
       <Typography className={classes.title} variant="h3">
         仙劍奇俠傳1 存檔修改器
       </Typography>
-      <UploadButton />
+      <ButtonGroup variant="contained" color="primary">
+        <UploadButton />
+      </ButtonGroup>
     </Toolbar>
   );
 };

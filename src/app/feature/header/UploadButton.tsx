@@ -1,6 +1,5 @@
 import React from "react";
-import { IconButton, Tooltip } from "@material-ui/core";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import { Button } from "@material-ui/core";
 import * as saveEditor from "app/util/saveEditor";
 import { useAppDispatch } from "app/hook";
 import { replaced as gameProgressReplaced } from "app/feature/gameProgress/gameProgressSlice";
@@ -33,12 +32,10 @@ const UploadButton = () => {
   };
 
   return (
-    <Tooltip title="上傳">
-      <IconButton color="inherit" component="label">
-        <CloudUploadIcon />
-        <input type="file" accept=".RPG" hidden onChange={handleFileUpload} />
-      </IconButton>
-    </Tooltip>
+    <Button color="inherit" component="label">
+      讀檔
+      <input type="file" accept=".RPG" hidden onChange={handleFileUpload} />
+    </Button>
   );
 };
 
