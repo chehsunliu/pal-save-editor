@@ -2,6 +2,7 @@ import { Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import CharacterCard from "app/feature/characters/CharcterCard";
+import { useAppSelector } from "app/hook";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -13,6 +14,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Characters = () => {
   const classes = useStyles();
+  const characters = useAppSelector((state) => state.characters);
+
+  const renderCharacterCards = () =>
+    Object.entries(characters).map((k, v) => (
+      <Grid item xs={4}>
+        <CharacterCard name="李逍遙" />
+      </Grid>
+    ));
 
   return (
     <div className={classes.root}>
@@ -20,21 +29,7 @@ const Characters = () => {
         角色
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <CharacterCard name="李逍遙" />
-        </Grid>
-        <Grid item xs={4}>
-          <CharacterCard name="趙靈兒" />
-        </Grid>
-        <Grid item xs={4}>
-          <CharacterCard name="林月如" />
-        </Grid>
-        <Grid item xs={4}>
-          <CharacterCard name="巫后" />
-        </Grid>
-        <Grid item xs={4}>
-          <CharacterCard name="阿奴" />
-        </Grid>
+        {renderCharacterCards()}
       </Grid>
     </div>
   );

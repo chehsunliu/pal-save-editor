@@ -1,5 +1,4 @@
 import { Card, CardContent, Typography } from "@material-ui/core";
-import { Character } from "app/util/saveEditor";
 
 interface CharacterCardProps {
   name: string;

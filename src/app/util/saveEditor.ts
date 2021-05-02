@@ -2,7 +2,7 @@ export type CharacterKey = "li" | "zhao" | "lin" | "queen" | "anu" | "dummy";
 
 export interface Save {
   gameProgress: GameProgress;
-  characters: Record<CharacterKey, Character>;
+  characters: Characters;
   inventory: Item[];
 }
 
@@ -11,6 +11,8 @@ export interface GameProgress {
   memberCount: number;
   money: number;
 }
+
+export type Characters = Record<CharacterKey, Character>;
 
 export interface Character {
   stat: {
