@@ -4,6 +4,7 @@ import * as saveEditor from "app/util/saveEditor";
 import { useAppDispatch } from "app/hook";
 import { replaced as gameProgressReplaced } from "app/feature/gameProgress/gameProgressSlice";
 import { replaced as charactersReplaced } from "app/feature/characters/charactersSlice";
+import { filenameUpdated } from "app/feature/header/rawSlice";
 
 const ImportSaveButton = (props: ButtonProps<"label">) => {
   const dispatch = useAppDispatch();
@@ -12,6 +13,7 @@ const ImportSaveButton = (props: ButtonProps<"label">) => {
     if (e.target.files === null) {
       return;
     }
+    const targetFile = e.target.files[0];
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -27,8 +29,9 @@ const ImportSaveButton = (props: ButtonProps<"label">) => {
       const save = saveEditor.load(buffer);
       dispatch(gameProgressReplaced({ state: save.gameProgress }));
       dispatch(charactersReplaced({ state: save.characters }));
+      dispatch(filenameUpdated({ filename: targetFile.name }));
     };
-    reader.readAsArrayBuffer(e.target.files[0]);
+    reader.readAsArrayBuffer(targetFile);
   };
 
   return (
