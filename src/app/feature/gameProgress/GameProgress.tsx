@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const GameProgress = () => {
   const classes = useStyles();
-  const { saveCount, memberCount, money } = useAppSelector((state) => state.game);
+  const { saveCount, memberCount, money } = useAppSelector((state) => state.gameProgress);
   const dispatch = useAppDispatch();
 
   const handleSaveCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {

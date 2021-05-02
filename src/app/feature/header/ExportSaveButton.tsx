@@ -1,28 +1,32 @@
 import { Button, ButtonProps } from "@material-ui/core";
 import { useAppSelector } from "app/hook";
 import { loadBinaryAsArrayBuffer } from "app/util/storage";
+import { overwrite } from "app/util/editor";
 
 const ExportSaveButton = (props: ButtonProps) => {
-  const raw = useAppSelector((state) => state.raw);
-  const disabled = raw.filename === null;
+  const stat = useAppSelector((state) => state);
+  const filename = stat.raw.filename;
+  const disabled = filename === null;
 
   const handleDownload = async () => {
-    if (raw.filename === null) {
+    if (filename === null) {
       console.error("filename is null");
       return;
     }
 
-    const buffer = loadBinaryAsArrayBuffer(raw.filename);
+    const buffer = loadBinaryAsArrayBuffer(filename);
     if (buffer === null) {
       console.error("array buffer is null");
       return;
     }
 
+    overwrite(buffer, stat);
+
     const blob = new Blob([new Uint8Array(buffer)]);
     const href = await URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = href;
-    link.download = raw.filename;
+    link.download = filename;
     link.click();
   };
 

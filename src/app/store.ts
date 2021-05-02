@@ -8,7 +8,7 @@ import rawReducer from "app/feature/header/rawSlice";
 export const store = configureStore({
   reducer: {
     characters: charactersReducer,
-    game: gameProgressReducer,
+    gameProgress: gameProgressReducer,
     inventory: inventoryReducer,
     raw: rawReducer,
   },
