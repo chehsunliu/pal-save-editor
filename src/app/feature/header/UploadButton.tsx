@@ -3,7 +3,7 @@ import { IconButton } from "@material-ui/core";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import * as saveEditor from "app/util/saveEditor";
 import { useAppDispatch } from "app/hook";
-import { replaced as gameProgressReplaced } from "app/feature/gameProgress/slice";
+import { replaced as gameProgressReplaced } from "app/feature/gameProgress/gameProgressSlice";
 
 const UploadButton = () => {
   const dispatch = useAppDispatch();
