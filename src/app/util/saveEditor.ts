@@ -1,8 +1,8 @@
-type PlayerKey = "li" | "zhao" | "lin" | "queen" | "anu" | "dummy";
+export type CharacterKey = "li" | "zhao" | "lin" | "queen" | "anu" | "dummy";
 
 export interface Save {
   gameProgress: GameProgress;
-  characters: Record<PlayerKey, Character>;
+  characters: Record<CharacterKey, Character>;
   inventory: Item[];
 }
 
@@ -12,7 +12,7 @@ export interface GameProgress {
   money: number;
 }
 
-interface Character {
+export interface Character {
   stat: {
     level: number;
     maxHealth: number;

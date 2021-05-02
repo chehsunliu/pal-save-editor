@@ -1,10 +1,11 @@
 import { Card, CardContent, Typography } from "@material-ui/core";
+import { Character } from "app/util/saveEditor";
 
-interface StatCardProps {
+interface CharacterCardProps {
   name: string;
 }
 
-const StatCard = (props: StatCardProps) => {
+const CharacterCard = (props: CharacterCardProps) => {
   return (
     <Card>
       <CardContent>
@@ -22,4 +23,4 @@ const StatCard = (props: StatCardProps) => {
   );
 };
 
-export default StatCard;
+export default CharacterCard;
