@@ -1,5 +1,5 @@
 import { Character, Characters } from "app/util/saveEditor";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const emptyCharacter: Character = {
   stat: {
@@ -37,7 +37,12 @@ const initialState: Characters = {
 const charactersSlice = createSlice({
   name: "characters",
   initialState,
-  reducers: {},
+  reducers: {
+    replaced: (state, action: PayloadAction<{ state: Characters }>) => {
+      return action.payload.state;
+    },
+  },
 });
 
+export const { replaced } = charactersSlice.actions;
 export default charactersSlice.reducer;

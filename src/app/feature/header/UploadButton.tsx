@@ -4,6 +4,7 @@ import AttachFileIcon from "@material-ui/icons/AttachFile";
 import * as saveEditor from "app/util/saveEditor";
 import { useAppDispatch } from "app/hook";
 import { replaced as gameProgressReplaced } from "app/feature/gameProgress/gameProgressSlice";
+import { replaced as charactersReplaced } from "app/feature/characters/charactersSlice";
 
 const UploadButton = () => {
   const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ const UploadButton = () => {
 
       const save = saveEditor.load(buffer);
       dispatch(gameProgressReplaced({ state: save.gameProgress }));
+      dispatch(charactersReplaced({ state: save.characters }));
     };
     reader.readAsArrayBuffer(e.target.files[0]);
   };
