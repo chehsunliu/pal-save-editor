@@ -1,0 +1,37 @@
+{
+  "header": {
+    "title": "PAL Save Editor",
+    "import": "Import",
+    "export": "Export"
+  },
+  "gameProgress": {
+    "title": "Game Progress",
+    "saveCount": "Save Count",
+    "memberCount": "Member Count",
+    "money": "Money"
+  },
+  "characters": {
+    "title": "Characters",
+    "name": {
+      "li": "Li Xiaoyao",
+      "zhao": "Zhao Ling'er",
+      "lin": "Lin Yueru",
+      "queen": "Queen",
+      "anu": "Anu",
+      "dummy": "Dummy"
+    }
+  },
+  "stats": {
+    "title": "Stats",
+    "level": "LV",
+    "maxHealth": "MAX HP",
+    "maxMana": "MAX MP",
+    "health": "HP",
+    "mana": "MP",
+    "attackDamage": "AD",
+    "abilityPower": "AP",
+    "resistance": "DEF",
+    "movement": "SPD",
+    "luck": "LUCK"
+  }
+}
