@@ -21,7 +21,6 @@ describe("<App />", () => {
     expect(btnLanguage.textContent).toEqual("tw");
 
     const moneyField = screen.getByTestId("pal-field-money").getElementsByTagName("input")[0];
-    await waitFor(() => expect(moneyField.value).not.toBeNull());
     expect(moneyField.value).toEqual("0");
   });
 
