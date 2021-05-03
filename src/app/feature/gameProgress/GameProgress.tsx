@@ -55,6 +55,7 @@ const GameProgress = () => {
       <div className={classes.main}>
         <TextField
           className={classes.textField}
+          data-testid="pal-field-save-count"
           variant="outlined"
           size="small"
           label={t("gameProgress.saveCount")}
@@ -63,6 +64,7 @@ const GameProgress = () => {
         />
         <TextField
           className={classes.textField}
+          data-testid="pal-field-member-count"
           variant="outlined"
           size="small"
           label={t("gameProgress.memberCount")}
