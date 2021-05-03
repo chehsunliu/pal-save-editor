@@ -1,4 +1,9 @@
 {
+  "header": {
+    "title": "PAL Save Editor",
+    "import": "Import",
+    "export": "Export"
+  },
   "name": {
     "li": "Li Xiaoyao",
     "zhao": "Zhao Ling'er",
