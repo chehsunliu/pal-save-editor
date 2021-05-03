@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
+    langButton: {
+      width: 60,
+    },
   })
 );
 
@@ -24,7 +27,7 @@ const Header = () => {
       <ButtonGroup color="primary">
         <ExportSaveButton>輸出檔案</ExportSaveButton>
         <ImportSaveButton>輸入檔案</ImportSaveButton>
-        <LanguageToggleButton variant="contained" />
+        <LanguageToggleButton className={classes.langButton} variant="contained" />
       </ButtonGroup>
     </Toolbar>
   );
