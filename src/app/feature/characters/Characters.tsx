@@ -3,6 +3,7 @@ import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import CharacterCard from "app/feature/characters/CharcterCard";
 import { CharacterId, characterIds } from "app/util/editor";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -12,22 +13,14 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const nameMap: Record<CharacterId, string> = {
-  li: "李逍遙",
-  zhao: "趙靈兒",
-  lin: "林月如",
-  queen: "巫后",
-  anu: "阿奴",
-  dummy: "冗員",
-};
-
 const Characters = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   const renderCharacterCards = () =>
     characterIds.map((k) => (
       <Grid item xs={4} key={k}>
-        <CharacterCard name={nameMap[k]} characterId={k} />
+        <CharacterCard name={t(`name.${k}`)} characterId={k} />
       </Grid>
     ));
 
