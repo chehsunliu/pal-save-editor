@@ -1,0 +1,37 @@
+{
+  "header": {
+    "title": "仙劍奇俠傳 存檔修改器",
+    "import": "輸入檔案",
+    "export": "輸出檔案"
+  },
+  "gameProgress": {
+    "title": "遊戲進度",
+    "saveCount": "存檔次數",
+    "memberCount": "隊伍人數",
+    "money": "金錢"
+  },
+  "characters": {
+    "title": "角色",
+    "name": {
+      "li": "李逍遙",
+      "zhao": "趙靈兒",
+      "lin": "林月如",
+      "queen": "巫后",
+      "anu": "阿奴",
+      "dummy": "冗員"
+    }
+  },
+  "stats": {
+    "title": "狀態",
+    "level": "修行",
+    "maxHealth": "最大體力",
+    "maxMana": "最大真氣",
+    "health": "體力",
+    "mana": "真氣",
+    "attackDamage": "武術",
+    "abilityPower": "靈力",
+    "resistance": "防禦",
+    "movement": "身法",
+    "luck": "吉運"
+  }
+}

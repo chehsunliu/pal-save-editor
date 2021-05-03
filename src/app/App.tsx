@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Header from "app/feature/header/Header";
 import { Container, Divider } from "@material-ui/core";
@@ -13,21 +13,31 @@ const useStyles = makeStyles((theme: Theme) =>
     main: {
       padding: theme.spacing(2),
     },
+    loading: {
+      margin: theme.spacing(1),
+    },
   })
 );
+
+const Loading = () => {
+  const classes = useStyles();
+  return <div className={classes.loading}>Loading...</div>;
+};
 
 const App = () => {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="lg" className={classes.root}>
-      <Header />
-      <div className={classes.main}>
-        <GameProgress />
-        <Characters />
-        <Divider />
-      </div>
-    </Container>
+    <Suspense fallback={<Loading />}>
+      <Container maxWidth="lg" className={classes.root}>
+        <Header />
+        <div className={classes.main}>
+          <GameProgress />
+          <Characters />
+          <Divider />
+        </div>
+      </Container>
+    </Suspense>
   );
 };
 
