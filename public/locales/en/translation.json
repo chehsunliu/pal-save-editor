@@ -2,7 +2,8 @@
   "header": {
     "title": "PAL Save Editor",
     "import": "Import",
-    "export": "Export"
+    "export": "Export",
+    "reset": "Reset"
   },
   "gameProgress": {
     "title": "Game Progress",

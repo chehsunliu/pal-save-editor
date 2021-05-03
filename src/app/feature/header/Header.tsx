@@ -5,6 +5,7 @@ import React from "react";
 import ExportSaveButton from "app/feature/header/ExportSaveButton";
 import LanguageToggleButton from "app/feature/header/LanguageToggleButton";
 import { useTranslation } from "react-i18next";
+import ResetButton from "app/feature/header/ResetButton";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,6 +28,7 @@ const Header = () => {
         {t("header.title")}
       </Typography>
       <ButtonGroup color="primary">
+        <ResetButton>{t("header.reset")}</ResetButton>
         <ExportSaveButton>{t("header.export")}</ExportSaveButton>
         <ImportSaveButton>{t("header.import")}</ImportSaveButton>
         <LanguageToggleButton className={classes.langButton} variant="contained" />

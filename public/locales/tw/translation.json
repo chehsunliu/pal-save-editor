@@ -2,7 +2,8 @@
   "header": {
     "title": "仙劍奇俠傳 存檔修改器",
     "import": "輸入檔案",
-    "export": "輸出檔案"
+    "export": "輸出檔案",
+    "reset": "重置"
   },
   "gameProgress": {
     "title": "遊戲進度",
