@@ -71,6 +71,7 @@ const GameProgress = () => {
         />
         <TextField
           className={classes.textField}
+          data-testid="pal-field-money"
           variant="outlined"
           size="small"
           label={t("gameProgress.money")}

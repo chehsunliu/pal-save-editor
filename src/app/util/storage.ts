@@ -1,5 +1,6 @@
 export const saveBinary = (storageKey: string, buffer: ArrayBuffer) => {
-  localStorage.setItem(storageKey, btoa(String.fromCharCode(...Array.from(new Uint8Array(buffer)))));
+  const data = new Uint8Array(buffer).reduce((acc, i) => acc + String.fromCharCode(...[i]), "");
+  localStorage.setItem(storageKey, btoa(data));
 };
 
 export const loadBinaryAsArrayBuffer = (storageKey: string): ArrayBuffer | null => {
