@@ -68,18 +68,26 @@ const CharacterCard = (props: CharacterCardProps) => {
           {name}
         </Typography>
         <Typography variant="h6" component="h2" gutterBottom>
-          {t("characters.statsTitle")}
+          {t("stats.title")}
         </Typography>
-        <CustomField label="修行" value={stat.level} onChange={handleStatUpdate("level")} />
-        <CustomField label="最大體力" value={stat.maxHealth} onChange={handleStatUpdate("maxHealth")} />
-        <CustomField label="最大真氣" value={stat.maxMana} onChange={handleStatUpdate("maxMana")} />
-        <CustomField label="體力" value={stat.health} onChange={handleStatUpdate("health")} />
-        <CustomField label="真氣" value={stat.mana} onChange={handleStatUpdate("mana")} />
-        <CustomField label="武術" value={stat.attackDamage} onChange={handleStatUpdate("attackDamage")} />
-        <CustomField label="靈力" value={stat.abilityPower} onChange={handleStatUpdate("abilityPower")} />
-        <CustomField label="防禦" value={stat.resistance} onChange={handleStatUpdate("resistance")} />
-        <CustomField label="身法" value={stat.movement} onChange={handleStatUpdate("movement")} />
-        <CustomField label="吉運" value={stat.luck} onChange={handleStatUpdate("luck")} />
+        <CustomField label={t("stats.level")} value={stat.level} onChange={handleStatUpdate("level")} />
+        <CustomField label={t("stats.maxHealth")} value={stat.maxHealth} onChange={handleStatUpdate("maxHealth")} />
+        <CustomField label={t("stats.maxMana")} value={stat.maxMana} onChange={handleStatUpdate("maxMana")} />
+        <CustomField label={t("stats.health")} value={stat.health} onChange={handleStatUpdate("health")} />
+        <CustomField label={t("stats.mana")} value={stat.mana} onChange={handleStatUpdate("mana")} />
+        <CustomField
+          label={t("stats.attackDamage")}
+          value={stat.attackDamage}
+          onChange={handleStatUpdate("attackDamage")}
+        />
+        <CustomField
+          label={t("stats.abilityPower")}
+          value={stat.abilityPower}
+          onChange={handleStatUpdate("abilityPower")}
+        />
+        <CustomField label={t("stats.resistance")} value={stat.resistance} onChange={handleStatUpdate("resistance")} />
+        <CustomField label={t("stats.movement")} value={stat.movement} onChange={handleStatUpdate("movement")} />
+        <CustomField label={t("stats.luck")} value={stat.luck} onChange={handleStatUpdate("luck")} />
       </CardContent>
     </Card>
   );

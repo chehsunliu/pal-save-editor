@@ -13,7 +13,19 @@
       "queen": "Queen",
       "anu": "Anu",
       "dummy": "Dummy"
-    },
-    "statsTitle": "Stats"
+    }
+  },
+  "stats": {
+    "title": "Stats",
+    "level": "LV",
+    "maxHealth": "MAX HP",
+    "maxMana": "MAX MP",
+    "health": "HP",
+    "mana": "MP",
+    "attackDamage": "AD",
+    "abilityPower": "AP",
+    "resistance": "DEF",
+    "movement": "SPD",
+    "luck": "LUCK"
   }
 }

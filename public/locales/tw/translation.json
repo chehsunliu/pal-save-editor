@@ -13,7 +13,19 @@
       "queen": "巫后",
       "anu": "阿奴",
       "dummy": "冗員"
-    },
-    "statsTitle": "狀態"
+    }
+  },
+  "stats": {
+    "title": "狀態",
+    "level": "修行",
+    "maxHealth": "最大體力",
+    "maxMana": "最大真氣",
+    "health": "體力",
+    "mana": "真氣",
+    "attackDamage": "武術",
+    "abilityPower": "靈力",
+    "resistance": "防禦",
+    "movement": "身法",
+    "luck": "吉運"
   }
 }
