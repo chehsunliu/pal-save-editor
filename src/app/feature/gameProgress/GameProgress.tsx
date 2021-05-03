@@ -3,6 +3,7 @@ import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { useAppDispatch, useAppSelector } from "app/hook";
 import { memberCountUpdated, moneyUpdated, saveCountUpdated } from "app/feature/gameProgress/gameProgressSlice";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,6 +23,7 @@ const GameProgress = () => {
   const classes = useStyles();
   const { saveCount, memberCount, money } = useAppSelector((state) => state.gameProgress);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const handleSaveCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let count = parseInt(e.target.value);
@@ -48,14 +50,14 @@ const GameProgress = () => {
   return (
     <div className={classes.root}>
       <Typography variant="h4" gutterBottom>
-        遊戲進度
+        {t("gameProgress.title")}
       </Typography>
       <div className={classes.main}>
         <TextField
           className={classes.textField}
           variant="outlined"
           size="small"
-          label="存檔次數"
+          label={t("gameProgress.saveCount")}
           value={saveCount}
           onChange={handleSaveCountChange}
         />
@@ -63,7 +65,7 @@ const GameProgress = () => {
           className={classes.textField}
           variant="outlined"
           size="small"
-          label="隊伍人數"
+          label={t("gameProgress.memberCount")}
           value={memberCount}
           onChange={handleMemberCountChange}
         />
@@ -71,7 +73,7 @@ const GameProgress = () => {
           className={classes.textField}
           variant="outlined"
           size="small"
-          label="金錢"
+          label={t("gameProgress.money")}
           value={money}
           onChange={handleMoneyChange}
         />

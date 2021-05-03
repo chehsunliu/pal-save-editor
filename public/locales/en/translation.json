@@ -4,6 +4,12 @@
     "import": "Import",
     "export": "Export"
   },
+  "gameProgress": {
+    "title": "Game Progress",
+    "saveCount": "Save Count",
+    "memberCount": "Member Count",
+    "money": "Money"
+  },
   "characters": {
     "title": "Characters",
     "name": {
