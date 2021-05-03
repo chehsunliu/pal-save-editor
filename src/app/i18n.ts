@@ -14,9 +14,6 @@ i18n
     backend: {
       loadPath: `${process.env.PUBLIC_URL}/locales/{{lng}}/{{ns}}.json`,
     },
-    react: {
-      useSuspense: false,
-    },
   });
 
 export default i18n;
