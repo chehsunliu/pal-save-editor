@@ -28,10 +28,10 @@ const Header = () => {
         {t("header.title")}
       </Typography>
       <ButtonGroup color="primary">
-        <ResetButton>{t("header.reset")}</ResetButton>
-        <ExportSaveButton>{t("header.export")}</ExportSaveButton>
-        <ImportSaveButton>{t("header.import")}</ImportSaveButton>
-        <LanguageToggleButton className={classes.langButton} variant="contained" />
+        <ResetButton data-testid="pal-reset-btn">{t("header.reset")}</ResetButton>
+        <ExportSaveButton data-testid="pal-export-btn">{t("header.export")}</ExportSaveButton>
+        <ImportSaveButton data-testid="pal-import-btn">{t("header.import")}</ImportSaveButton>
+        <LanguageToggleButton data-testid="pal-language-btn" className={classes.langButton} variant="contained" />
       </ButtonGroup>
     </Toolbar>
   );
