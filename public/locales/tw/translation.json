@@ -4,12 +4,16 @@
     "import": "輸入檔案",
     "export": "輸出檔案"
   },
-  "name": {
-    "li": "李逍遙",
-    "zhao": "趙靈兒",
-    "lin": "林月如",
-    "queen": "巫后",
-    "anu": "阿奴",
-    "dummy": "冗員"
+  "characters": {
+    "title": "角色",
+    "name": {
+      "li": "李逍遙",
+      "zhao": "趙靈兒",
+      "lin": "林月如",
+      "queen": "巫后",
+      "anu": "阿奴",
+      "dummy": "冗員"
+    },
+    "statsTitle": "狀態"
   }
 }

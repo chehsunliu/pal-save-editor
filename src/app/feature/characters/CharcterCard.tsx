@@ -4,6 +4,7 @@ import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { useAppDispatch, useAppSelector } from "app/hook";
 import { statUpdated } from "app/feature/characters/charactersSlice";
+import { useTranslation } from "react-i18next";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -52,6 +53,7 @@ const CharacterCard = (props: CharacterCardProps) => {
 
   const { characterId, name } = props;
   const { stat } = characters[characterId];
+  const { t } = useTranslation();
 
   const handleStatUpdate = (field: keyof CharacterStat) => (value: number) => {
     const newStat = { ...stat };
@@ -66,7 +68,7 @@ const CharacterCard = (props: CharacterCardProps) => {
           {name}
         </Typography>
         <Typography variant="h6" component="h2" gutterBottom>
-          狀態
+          {t("characters.statsTitle")}
         </Typography>
         <CustomField label="修行" value={stat.level} onChange={handleStatUpdate("level")} />
         <CustomField label="最大體力" value={stat.maxHealth} onChange={handleStatUpdate("maxHealth")} />

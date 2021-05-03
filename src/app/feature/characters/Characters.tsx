@@ -20,14 +20,14 @@ const Characters = () => {
   const renderCharacterCards = () =>
     characterIds.map((k) => (
       <Grid item xs={4} key={k}>
-        <CharacterCard name={t(`name.${k}`)} characterId={k} />
+        <CharacterCard name={t(`characters.name.${k}`)} characterId={k} />
       </Grid>
     ));
 
   return (
     <div className={classes.root}>
       <Typography variant="h4" gutterBottom>
-        角色
+        {t("characters.title")}
       </Typography>
       <Grid container spacing={2}>
         {renderCharacterCards()}

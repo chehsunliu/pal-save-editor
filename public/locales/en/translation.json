@@ -4,12 +4,16 @@
     "import": "Import",
     "export": "Export"
   },
-  "name": {
-    "li": "Li Xiaoyao",
-    "zhao": "Zhao Ling'er",
-    "lin": "Lin Yueru",
-    "queen": "Queen",
-    "anu": "Anu",
-    "dummy": "Dummy"
+  "characters": {
+    "title": "Characters",
+    "name": {
+      "li": "Li Xiaoyao",
+      "zhao": "Zhao Ling'er",
+      "lin": "Lin Yueru",
+      "queen": "Queen",
+      "anu": "Anu",
+      "dummy": "Dummy"
+    },
+    "statsTitle": "Stats"
   }
 }
