@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <Toolbar>
-      <Typography className={classes.title} variant="h3">
+      <Typography data-testid="pal-header-title" className={classes.title} variant="h3">
         {t("header.title")}
       </Typography>
       <ButtonGroup color="primary">
