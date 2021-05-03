@@ -3,6 +3,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import ImportSaveButton from "app/feature/header/ImportSaveButton";
 import React from "react";
 import ExportSaveButton from "app/feature/header/ExportSaveButton";
+import LanguageToggleButton from "app/feature/header/LanguageToggleButton";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,6 +24,7 @@ const Header = () => {
       <ButtonGroup color="primary">
         <ExportSaveButton>輸出檔案</ExportSaveButton>
         <ImportSaveButton>輸入檔案</ImportSaveButton>
+        <LanguageToggleButton variant="contained" />
       </ButtonGroup>
     </Toolbar>
   );
