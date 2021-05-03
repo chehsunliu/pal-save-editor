@@ -23,18 +23,25 @@ describe("<App />", () => {
     const moneyField = screen.getByTestId("pal-field-money").getElementsByTagName("input")[0];
     expect(moneyField.value).toEqual("0");
   });
+});
 
-  it("renders with 2.RPG uploaded", async () => {
+describe("<App /> with 2.RPG", () => {
+  beforeEach(async () => {
+    render(<App />);
+
     const buffer = readFileSync(`${__dirname}/util/__tests__/2.RPG`);
     const file = new File([buffer], "2.RPG");
-
     const inputImport = screen.getByTestId("pal-import-btn-input");
     fireEvent.change(inputImport, { target: { files: [file] } });
 
-    const btnReset = screen.getByTestId("pal-reset-btn");
-    await waitFor(() => expect(btnReset.getAttribute("disabled")).toBeNull());
-
     const moneyField = screen.getByTestId("pal-field-money").getElementsByTagName("input")[0];
-    expect(moneyField.value).toEqual("496348");
+    await waitFor(() => expect(moneyField.value).toEqual("496348"));
+  });
+
+  it("should render without disabled buttons", () => {
+    const btnReset = screen.getByTestId("pal-reset-btn");
+    const btnExport = screen.getByTestId("pal-export-btn");
+    expect(btnReset.hasAttribute("disabled")).toBeFalsy();
+    expect(btnExport.hasAttribute("disabled")).toBeFalsy();
   });
 });
