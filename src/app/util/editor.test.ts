@@ -232,14 +232,18 @@ const expected2RPGSave: Save = {
   ],
 };
 
+let nodeBuffer: Buffer;
+
+beforeAll(() => {
+  nodeBuffer = readFileSync(`${__dirname}/../__tests__/2.RPG`);
+});
+
 test("load buffer", () => {
-  const nodeBuffer = readFileSync(`${__dirname}/__tests__/2.RPG`);
   const save = load(nodeBuffer.buffer);
   expect(save).toEqual(expected2RPGSave);
 });
 
 test("overwrite buffer", () => {
-  const nodeBuffer = readFileSync(`${__dirname}/__tests__/2.RPG`);
   const arrayBuffer = nodeBuffer.buffer;
 
   const newGameProgress = {

@@ -29,7 +29,7 @@ describe("<App /> with 2.RPG", () => {
   beforeEach(async () => {
     render(<App />);
 
-    const buffer = readFileSync(`${__dirname}/util/__tests__/2.RPG`);
+    const buffer = readFileSync(`${__dirname}/__tests__/2.RPG`);
     const file = new File([buffer], "2.RPG");
     const inputImport = screen.getByTestId("pal-import-btn-input");
     fireEvent.change(inputImport, { target: { files: [file] } });
