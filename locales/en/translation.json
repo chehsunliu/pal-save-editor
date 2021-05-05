@@ -19,7 +19,7 @@
       "lin": "Lin Yueru",
       "queen": "Queen",
       "anu": "Anu",
-      "dummy": "Dummy"
+      "dummy": "Gai Luojiao"
     }
   },
   "stats": {
@@ -34,5 +34,8 @@
     "resistance": "DEF",
     "movement": "SPD",
     "luck": "LUCK"
+  },
+  "abilities": {
+    "title": "Abilities"
   }
 }
