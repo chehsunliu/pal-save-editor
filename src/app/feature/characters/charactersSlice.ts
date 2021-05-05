@@ -44,8 +44,16 @@ const charactersSlice = createSlice({
     statUpdated: (state, action: PayloadAction<{ id: CharacterId; stat: CharacterStat }>) => {
       state[action.payload.id].stat = action.payload.stat;
     },
+    abilityAdded: (state, action: PayloadAction<{ id: CharacterId; ability: number }>) => {
+      state[action.payload.id].abilities.push(action.payload.ability);
+    },
+    abilityRemoved: (state, action: PayloadAction<{ id: CharacterId; ability: number }>) => {
+      state[action.payload.id].abilities = state[action.payload.id].abilities.filter(
+        (a) => a !== action.payload.ability
+      );
+    },
   },
 });
 
-export const { replaced, statUpdated } = charactersSlice.actions;
+export const { replaced, statUpdated, abilityAdded, abilityRemoved } = charactersSlice.actions;
 export default charactersSlice.reducer;
