@@ -1,22 +1,25 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { IconButton, InputBase } from "@material-ui/core";
-import ClearIcon from "@material-ui/icons/Clear";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import React from "react";
 
+interface StyleProps {
+  visible: boolean;
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    itemField: {
+    itemField: (props: StyleProps) => ({
       display: "inline-block",
       marginRight: theme.spacing(1),
       marginBottom: theme.spacing(1),
       paddingLeft: theme.spacing(1),
       paddingRight: theme.spacing(1),
-      backgroundColor: "#eee",
+      backgroundColor: props.visible ? theme.palette.info.light : "#eee",
       borderRadius: 5,
       height: "30px",
-    },
+    }),
     itemFieldButton: {
       verticalAlign: "-0.2em",
     },
@@ -43,7 +46,7 @@ interface ItemFieldProps {
 
 const ItemField = (props: ItemFieldProps) => {
   const { label, value, visible, onChange, onVisibilityToggle } = props;
-  const classes = useStyles();
+  const classes = useStyles({ visible });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const v = parseInt(e.target.value);
