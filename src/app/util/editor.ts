@@ -46,6 +46,7 @@ export type Inventory = { [id: number]: Item };
 export interface Item {
   count: number;
   used: number;
+  visible: boolean;
 }
 
 const SAVE_COUNT_ADDR = 0x000;
@@ -120,8 +121,24 @@ const loadCharacters = (data: DataView): Character[] => {
     });
 };
 
-const loadInventory = (data: DataView): Inventory =>
-  Array(256)
+export const createAllInventoryItems = (): Inventory =>
+  Object.fromEntries(
+    Array(294 - 61 + 1)
+      .fill(0)
+      .map((_, index) => [
+        index + 61,
+        {
+          count: 0,
+          used: 0,
+          visible: false,
+        },
+      ])
+  );
+
+const loadInventory = (data: DataView): Inventory => {
+  const allItems = createAllInventoryItems();
+
+  return Array(256)
     .fill(0)
     .map((_, index) => ({
       id: data.getUint16(0x06c0 + index * 6, true),
@@ -130,9 +147,10 @@ const loadInventory = (data: DataView): Inventory =>
     }))
     .filter((item) => item.id !== 0)
     .reduce((inv: Inventory, item) => {
-      inv[item.id] = { count: item.count, used: item.used };
+      inv[item.id] = { count: item.count, used: item.used, visible: true };
       return inv;
-    }, {});
+    }, allItems);
+};
 
 export const load = (buffer: ArrayBuffer): Save => {
   const data = new DataView(buffer);
