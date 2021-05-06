@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { load, overwrite, Save } from "app/util/editor";
+import { createAllInventoryItems, load, overwrite, Save } from "app/util/editor";
 
 let expected2RPGSave: Save;
 let nodeBuffer: Buffer;
@@ -48,16 +48,30 @@ test("overwrite buffer", () => {
       },
     },
   };
+  let newInventory = {
+    ...createAllInventoryItems(),
+    150: {
+      count: 3,
+      used: 0,
+      visible: true,
+    },
+    255: {
+      count: 3,
+      used: 0,
+      visible: true,
+    },
+  };
 
   overwrite(arrayBuffer, {
     ...expected2RPGSave,
     gameProgress: newGameProgress,
     characters: newCharacters,
+    inventory: newInventory,
   });
 
   const newSave = load(arrayBuffer);
   expect(newSave).not.toEqual(expected2RPGSave);
   expect(newSave.gameProgress).toEqual(newGameProgress);
   expect(newSave.characters).toEqual(newCharacters);
-  expect(newSave.inventory).toEqual(expected2RPGSave.inventory);
+  expect(newSave.inventory).toEqual(newInventory);
 });
