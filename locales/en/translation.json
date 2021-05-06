@@ -37,5 +37,8 @@
   },
   "abilities": {
     "title": "Abilities"
+  },
+  "inventory": {
+    "title": "Inventory"
   }
 }
