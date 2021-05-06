@@ -22,6 +22,8 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
       marginTop: 0,
       marginBottom: 0,
+      display: "inline-block",
+      width: "82px",
     },
     itemFieldInput: {
       width: 20,
@@ -32,12 +34,11 @@ const useStyles = makeStyles((theme: Theme) =>
 interface ItemFieldProps {
   label: string;
   value: number;
-  onDelete: () => void;
   onChange: (value: number) => void;
 }
 
 const ItemField = (props: ItemFieldProps) => {
-  const { label, value, onDelete, onChange } = props;
+  const { label, value, onChange } = props;
   const classes = useStyles();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +50,7 @@ const ItemField = (props: ItemFieldProps) => {
 
   return (
     <span className={classes.itemField}>
-      <IconButton className={classes.itemFieldButton} color="primary" size="small" onClick={() => onDelete()}>
+      <IconButton className={classes.itemFieldButton} color="primary" size="small">
         <ClearIcon fontSize="inherit" />
       </IconButton>
       <span className={classes.itemFieldLabel}>{label}</span>
