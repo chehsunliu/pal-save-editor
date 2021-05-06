@@ -41,10 +41,9 @@ export interface CharacterStat {
   luck: number;
 }
 
-export type Inventory = Item[];
+export type Inventory = { [id: number]: Item };
 
 interface Item {
-  id: number;
   count: number;
   used: number;
 }
@@ -121,16 +120,19 @@ const loadCharacters = (data: DataView): Character[] => {
     });
 };
 
-const loadInventory = (data: DataView): Item[] => {
-  return Array(256)
+const loadInventory = (data: DataView): Inventory =>
+  Array(256)
     .fill(0)
     .map((_, index) => ({
       id: data.getUint16(0x06c0 + index * 6, true),
       count: data.getUint16(0x06c2 + index * 6, true),
       used: data.getUint16(0x06c4 + index * 6, true),
     }))
-    .filter((item) => item.id !== 0);
-};
+    .filter((item) => item.id !== 0)
+    .reduce((inv: Inventory, item) => {
+      inv[item.id] = { count: item.count, used: item.used };
+      return inv;
+    }, {});
 
 export const load = (buffer: ArrayBuffer): Save => {
   const data = new DataView(buffer);

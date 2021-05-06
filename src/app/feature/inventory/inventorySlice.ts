@@ -1,7 +1,7 @@
 import { Inventory } from "app/util/editor";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: Inventory = [];
+const initialState: Inventory = {};
 
 const inventorySlice = createSlice({
   name: "inventory",
