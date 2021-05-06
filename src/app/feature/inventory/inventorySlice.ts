@@ -1,7 +1,7 @@
 import { Inventory, Item } from "app/util/editor";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface VisibleItem extends Item {
+export interface VisibleItem extends Item {
   visible: boolean;
 }
 
@@ -35,9 +35,18 @@ const inventorySlice = createSlice({
     },
     itemCountChanged: (state, action: PayloadAction<{ id: number; count: number }>) => {
       state[action.payload.id].count = action.payload.count;
+      if (action.payload.count > 0) {
+        state[action.payload.id].visible = true;
+      }
+    },
+    itemVisibilityToggled: (state, action: PayloadAction<{ id: number }>) => {
+      state[action.payload.id].visible = !state[action.payload.id].visible;
+      if (!state[action.payload.id].visible) {
+        state[action.payload.id].count = 0;
+      }
     },
   },
 });
 
-export const { replaced, itemCountChanged } = inventorySlice.actions;
+export const { replaced, itemCountChanged, itemVisibilityToggled } = inventorySlice.actions;
 export default inventorySlice.reducer;

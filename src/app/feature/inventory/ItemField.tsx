@@ -1,6 +1,8 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { IconButton, InputBase } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import React from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -34,11 +36,13 @@ const useStyles = makeStyles((theme: Theme) =>
 interface ItemFieldProps {
   label: string;
   value: number;
+  visible: boolean;
   onChange: (value: number) => void;
+  onVisibilityToggle: () => void;
 }
 
 const ItemField = (props: ItemFieldProps) => {
-  const { label, value, onChange } = props;
+  const { label, value, visible, onChange, onVisibilityToggle } = props;
   const classes = useStyles();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,8 +54,8 @@ const ItemField = (props: ItemFieldProps) => {
 
   return (
     <span className={classes.itemField}>
-      <IconButton className={classes.itemFieldButton} color="primary" size="small">
-        <ClearIcon fontSize="inherit" />
+      <IconButton className={classes.itemFieldButton} size="small" onClick={() => onVisibilityToggle()}>
+        {visible ? <Visibility fontSize="inherit" /> : <VisibilityOff fontSize="inherit" />}
       </IconButton>
       <span className={classes.itemFieldLabel}>{label}</span>
       <InputBase
