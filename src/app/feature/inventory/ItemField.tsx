@@ -1,7 +1,5 @@
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { IconButton, InputBase } from "@material-ui/core";
-import Visibility from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { InputBase } from "@material-ui/core";
 import React from "react";
 
 interface StyleProps {
@@ -20,10 +18,8 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 5,
       height: "30px",
     }),
-    itemFieldButton: {
-      verticalAlign: "-0.2em",
-    },
     itemFieldLabel: {
+      cursor: "pointer",
       marginRight: theme.spacing(1),
       marginTop: 0,
       marginBottom: 0,
@@ -57,10 +53,9 @@ const ItemField = (props: ItemFieldProps) => {
 
   return (
     <span className={classes.itemField}>
-      <IconButton className={classes.itemFieldButton} size="small" onClick={() => onVisibilityToggle()}>
-        {visible ? <Visibility fontSize="inherit" /> : <VisibilityOff fontSize="inherit" />}
-      </IconButton>
-      <span className={classes.itemFieldLabel}>{label}</span>
+      <span className={classes.itemFieldLabel} onClick={() => onVisibilityToggle()}>
+        {label}
+      </span>
       <InputBase
         className={classes.itemFieldInput}
         inputProps={{ style: { textAlign: "right" } }}
