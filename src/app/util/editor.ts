@@ -41,12 +41,12 @@ export interface CharacterStat {
   luck: number;
 }
 
-export type Inventory = Item[];
+export type Inventory = { [id: number]: Item };
 
-interface Item {
-  id: number;
+export interface Item {
   count: number;
   used: number;
+  visible: boolean;
 }
 
 const SAVE_COUNT_ADDR = 0x000;
@@ -54,6 +54,7 @@ const MEMBER_COUNT_ADDR = 0x0006;
 const MONEY_ADDR = 0x0028;
 const STATS_ADDR = 0x0244;
 const ABILITIES_ADDR = 0x037c;
+const INVENTORY_ADDR = 0x06c0;
 
 const loadCharacters = (data: DataView): Character[] => {
   const characterCount = characterIds.length;
@@ -121,15 +122,35 @@ const loadCharacters = (data: DataView): Character[] => {
     });
 };
 
-const loadInventory = (data: DataView): Item[] => {
+export const createAllInventoryItems = (): Inventory =>
+  Object.fromEntries(
+    Array(294 - 61 + 1)
+      .fill(0)
+      .map((_, index) => [
+        index + 61,
+        {
+          count: 0,
+          used: 0,
+          visible: false,
+        },
+      ])
+  );
+
+const loadInventory = (data: DataView): Inventory => {
+  const allItems = createAllInventoryItems();
+
   return Array(256)
     .fill(0)
     .map((_, index) => ({
-      id: data.getUint16(0x06c0 + index * 6, true),
-      count: data.getUint16(0x06c2 + index * 6, true),
-      used: data.getUint16(0x06c4 + index * 6, true),
+      id: data.getUint16(INVENTORY_ADDR + index * 6, true),
+      count: data.getUint16(INVENTORY_ADDR + 2 + index * 6, true),
+      used: data.getUint16(INVENTORY_ADDR + 4 + index * 6, true),
     }))
-    .filter((item) => item.id !== 0);
+    .filter((item) => item.id !== 0)
+    .reduce((inv: Inventory, item) => {
+      inv[item.id] = { count: item.count, used: item.used, visible: true };
+      return inv;
+    }, allItems);
 };
 
 export const load = (buffer: ArrayBuffer): Save => {
@@ -190,7 +211,26 @@ const overwriteCharacters = (buffer: ArrayBuffer, characters: Characters) => {
   });
 };
 
+const overwriteInventory = (buffer: ArrayBuffer, inventory: Inventory) => {
+  let items: Array<{ id: number; count: number; used: number }> = Object.entries(inventory)
+    .filter(([_, item]) => item.visible)
+    .map(([id, item]) => ({ id: (id as unknown) as number, count: item.count, used: item.used }));
+  items = [
+    ...items,
+    ...Array(256 - items.length)
+      .fill(0)
+      .map((v) => ({ id: 0, count: 0, used: 0 })),
+  ];
+  items.forEach(({ id, count, used }, index) => {
+    const offset = index * 6;
+    new Uint16Array(buffer, INVENTORY_ADDR + offset, 2)[0] = id;
+    new Uint16Array(buffer, INVENTORY_ADDR + 2 + offset, 2)[0] = count;
+    new Uint16Array(buffer, INVENTORY_ADDR + 4 + offset, 2)[0] = used;
+  });
+};
+
 export const overwrite = (buffer: ArrayBuffer, save: Save) => {
   overwriteGameProgress(buffer, save.gameProgress);
   overwriteCharacters(buffer, save.characters);
+  overwriteInventory(buffer, save.inventory);
 };
