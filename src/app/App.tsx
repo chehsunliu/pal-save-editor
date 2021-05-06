@@ -4,6 +4,7 @@ import Header from "app/feature/header/Header";
 import { Container } from "@material-ui/core";
 import GameProgress from "app/feature/gameProgress/GameProgress";
 import Characters from "app/feature/characters/Characters";
+import Inventory from "app/feature/inventory/Inventory";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,6 +35,7 @@ const App = () => {
         <div className={classes.main}>
           <GameProgress />
           <Characters />
+          <Inventory />
         </div>
       </Container>
     </Suspense>

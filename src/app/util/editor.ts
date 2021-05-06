@@ -43,7 +43,7 @@ export interface CharacterStat {
 
 export type Inventory = { [id: number]: Item };
 
-interface Item {
+export interface Item {
   count: number;
   used: number;
 }
