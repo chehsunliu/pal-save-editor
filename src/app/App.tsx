@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Header from "app/feature/header/Header";
-import { Container, Divider } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import GameProgress from "app/feature/gameProgress/GameProgress";
 import Characters from "app/feature/characters/Characters";
 
@@ -34,7 +34,6 @@ const App = () => {
         <div className={classes.main}>
           <GameProgress />
           <Characters />
-          <Divider />
         </div>
       </Container>
     </Suspense>
