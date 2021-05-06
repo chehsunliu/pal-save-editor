@@ -5,11 +5,22 @@ import { useAppDispatch, useAppSelector } from "app/hook";
 import { itemCountChanged, itemVisibilityToggled } from "app/feature/inventory/inventorySlice";
 import ItemField from "app/feature/inventory/ItemField";
 import { Item } from "app/util/editor";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    title: {
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2),
+    },
+  })
+);
 
 const Inventory = () => {
   const inventory = useAppSelector((state) => state.inventory);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const classes = useStyles();
 
   const handleChange = (id: number) => (value: number) => {
     dispatch(itemCountChanged({ id, count: value }));
@@ -21,7 +32,7 @@ const Inventory = () => {
 
   return (
     <>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" className={classes.title} gutterBottom>
         {t("inventory.title")}
       </Typography>
       <div>
