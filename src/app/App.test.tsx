@@ -3,11 +3,9 @@ import { render, screen, fireEvent, waitFor } from "app/test-utils";
 import { readFileSync } from "fs";
 
 describe("<App />", () => {
-  beforeEach(() => {
-    render(<App />);
-  });
-
   it("renders with reset and export buttons disabled", async () => {
+    render(<App />);
+
     const btnReset = screen.getByTestId("pal-reset-btn");
     const btnExport = screen.getByTestId("pal-export-btn");
     const btnImport = screen.getByTestId("pal-import-btn");
@@ -26,7 +24,7 @@ describe("<App />", () => {
 });
 
 describe("<App /> with 2.RPG", () => {
-  beforeEach(async () => {
+  it("should render without disabled buttons", async () => {
     render(<App />);
 
     const buffer = readFileSync(`${__dirname}/__tests__/2.RPG`);
@@ -36,19 +34,26 @@ describe("<App /> with 2.RPG", () => {
 
     const moneyField = screen.getByTestId("pal-field-money").getElementsByTagName("input")[0];
     await waitFor(() => expect(moneyField.value).toEqual("496348"));
-  });
 
-  it("should render without disabled buttons", () => {
     const btnReset = screen.getByTestId("pal-reset-btn");
     const btnExport = screen.getByTestId("pal-export-btn");
     expect(btnReset.hasAttribute("disabled")).toBeFalsy();
     expect(btnExport.hasAttribute("disabled")).toBeFalsy();
   });
 
-  test("when the game progress fields are modified and reset", () => {
+  test("when the game progress fields are modified and reset", async () => {
+    render(<App />);
+
+    const buffer = readFileSync(`${__dirname}/__tests__/2.RPG`);
+    const file = new File([buffer], "2.RPG");
+    const inputImport = screen.getByTestId("pal-import-btn-input");
+    fireEvent.change(inputImport, { target: { files: [file] } });
+
+    const moneyField = screen.getByTestId("pal-field-money").getElementsByTagName("input")[0];
+    await waitFor(() => expect(moneyField.value).toEqual("496348"));
+
     const saveCountField = screen.getByTestId("pal-field-save-count").getElementsByTagName("input")[0];
     const memberCountField = screen.getByTestId("pal-field-member-count").getElementsByTagName("input")[0];
-    const moneyField = screen.getByTestId("pal-field-money").getElementsByTagName("input")[0];
     const btnReset = screen.getByTestId("pal-reset-btn");
 
     fireEvent.change(saveCountField, { target: { value: "22" } });
