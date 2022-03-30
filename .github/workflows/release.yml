@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    branches: [main, cl/dev]
+    branches: [main]
   release:
     types: [published]
 
@@ -13,7 +13,7 @@ jobs:
       - id: set-up-environment
         name: Set up environment
         run: |
-          target_staging=${{ github.ref == 'refs/heads/cl/dev' }}
+          target_staging=${{ github.ref == 'refs/heads/main' }}
           target_production=${{ startsWith(github.ref, 'refs/tags/') }}
 
           if [[ "$target_staging" == "true" ]]; then
@@ -62,6 +62,12 @@ jobs:
         run: |
           yarn install
           yarn build
+
+      - uses: JamesIves/github-pages-deploy-action@v4.2.5
+        if: ${{ needs.pre-deploy.outputs.environment == 'Production' }}
+        with:
+          branch: gh-pages
+          folder: build
 
       - uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
