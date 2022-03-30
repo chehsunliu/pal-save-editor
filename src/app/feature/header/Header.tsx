@@ -1,4 +1,4 @@
-import { ButtonGroup, Toolbar, Typography } from "@material-ui/core";
+import { ButtonGroup, Link, Toolbar, Typography } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import ImportSaveButton from "app/feature/header/ImportSaveButton";
 import React from "react";
@@ -26,6 +26,9 @@ const Header = () => {
     <Toolbar>
       <Typography data-testid="pal-header-title" className={classes.title} variant="h3">
         {t("header.title")}
+        <Typography variant="subtitle1">
+          <Link href="https://github.com/chehsunliu/pal-save-editor">source code</Link>
+        </Typography>
       </Typography>
       <ButtonGroup color="primary">
         <ResetButton data-testid="pal-reset-btn">{t("header.reset")}</ResetButton>
