@@ -1,6 +1,7 @@
 # 仙劍奇俠傳存檔修改器
 
 [![ci](https://github.com/chehsunliu/pal-save-editor/actions/workflows/ci.yml/badge.svg)](https://github.com/chehsunliu/pal-save-editor/actions/workflows/ci.yml)
+[![release](https://github.com/chehsunliu/pal-save-editor/actions/workflows/release.yml/badge.svg)](https://github.com/chehsunliu/pal-save-editor/actions/workflows/release.yml)
 [![codecov](https://codecov.io/gh/chehsunliu/pal-save-editor/branch/main/graph/badge.svg?token=RrudO3BXVd)](https://codecov.io/gh/chehsunliu/pal-save-editor)
 
 https://chehsunliu.github.io/pal-save-editor/
