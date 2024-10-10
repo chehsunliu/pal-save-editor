@@ -27,7 +27,7 @@ const Header = () => {
       <Typography data-testid="pal-header-title" className={classes.title} variant="h3">
         {t("header.title")}
         <Typography variant="subtitle1">
-          <Link href="https://github.com/chehsunliu/pal-save-editor">source code</Link>
+          Source code 放在 <Link href="https://github.com/chehsunliu/pal-save-editor">GitHub</Link>，有需要新仙劍奇俠傳修改的朋友也可以到<Link href="https://chehsunliu.github.io/retro">這個網頁</Link>，之後這邊也會搬過去。
         </Typography>
       </Typography>
       <ButtonGroup color="primary">
