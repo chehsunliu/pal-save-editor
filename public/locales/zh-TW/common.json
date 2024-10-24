@@ -1,0 +1,17 @@
+{
+  "title": {
+    "pal": "仙劍奇俠傳",
+    "pal-new": "新仙劍奇俠傳",
+    "swd-2e": "軒轅劍外傳 - 楓之舞"
+  },
+  "subtitle": {
+    "general": "一般",
+    "character": "角色",
+    "inventory": "物品"
+  },
+  "action": {
+    "import": "輸入",
+    "export": "輸出",
+    "reset": "重製"
+  }
+}
