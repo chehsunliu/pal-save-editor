@@ -8,7 +8,6 @@ import { StatsProvider as Swd2eStatsProvider } from "@/features/swd-2e/stats-pro
 import { ThemeProvider } from "@/hooks/theme-provider.tsx";
 import "@/i18n.ts";
 import "@/index.css";
-import App from "@/routes/app.tsx";
 import PalNewApp from "@/routes/pal-new.tsx";
 import PalApp from "@/routes/pal.tsx";
 import Root from "@/routes/root.tsx";
@@ -31,7 +30,7 @@ const router = createHashRouter([
     children: [
       {
         path: "",
-        element: <App />,
+        element: <PalApp />,
       },
       {
         path: "pal",
