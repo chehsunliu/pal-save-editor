@@ -1,0 +1,17 @@
+changelog:
+  categories:
+    - title: 仙劍奇俠傳
+      labels:
+        - "Component: PAL"
+
+    - title: 新仙劍奇俠傳
+      labels:
+        - "Component: PAL-New"
+
+    - title: 軒轅劍外傳 - 楓之舞
+      labels:
+        - "Component: SWD-2E"
+
+    - title: Other Changes
+      labels:
+        - "*"
