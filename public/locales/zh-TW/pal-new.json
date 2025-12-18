@@ -4,6 +4,7 @@
   "abilityPlaceholder": "選擇...",
   "subtitle": {
     "stats": "狀態",
+    "equipments": "裝備",
     "abilities": "仙術"
   },
   "names": {
@@ -13,6 +14,14 @@
     "anu": "阿奴",
     "queen": "巫后",
     "li2": "夢境李逍遙"
+  },
+  "equipments": {
+    "head": "頭戴",
+    "clock": "披掛",
+    "body": "身穿",
+    "hand": "手持",
+    "foot": "腳穿",
+    "accessories": "配帶"
   },
   "attrs": {
     "level": "等級",
