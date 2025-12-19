@@ -26,16 +26,9 @@ export const attrKeys = [
 
 type AttrKey = (typeof attrKeys)[number];
 
-export const equipmentKeys = [
-  "head",
-  "clock",
-  "body",
-  "hand",
-  "foot",
-  "accessories",
-] as const;
+export const equipmentKeys = ["head", "clock", "body", "hand", "foot", "accessories"] as const;
 
-export type EquipmentKey = (typeof equipmentKeys)[number]; 
+export type EquipmentKey = (typeof equipmentKeys)[number];
 
 const addresses = {
   savingCount: 0x0000,
@@ -64,7 +57,7 @@ const equipmentAddressOffset: { [k in EquipmentKey]: number } = {
   hand: 0x60,
   foot: 0x6c,
   accessories: 0x78,
-}
+};
 
 const abilityAddressOffset = 0x138;
 
@@ -88,7 +81,7 @@ type Character = {
     hand: number;
     foot: number;
     accessories: number;
-  },
+  };
   abilities: number[];
 };
 
