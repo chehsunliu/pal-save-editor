@@ -6,16 +6,16 @@ import { Outlet, useNavigate, Link, useLocation } from "react-router-dom";
 import { Icons } from "@/components/icons.tsx";
 import { Badge } from "@/components/ui/badge.tsx";
 import { Button, buttonVariants } from "@/components/ui/button.tsx";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useTheme } from "@/hooks/theme-provider.tsx";
-import { tracer } from "@/lib/tracer.ts";
 import { langs } from "@/i18n";
+import { tracer } from "@/lib/tracer.ts";
 import { cn } from "@/lib/utils";
 
 const games = ["swd-2e", "pal", "pal-new"];
@@ -83,23 +83,16 @@ function Root() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              {
-                langs.map((lang) => (
-                  <DropdownMenuItem 
-                    key={lang.value} 
-                    onClick={() => changeLanguage(lang.value)}
-                    className={cn(
-                      "relative pl-8",
-                      i18n.language === lang.value && "bg-accent"
-                    )}
-                  >
-                    {i18n.language === lang.value && (
-                      <Check className="absolute left-2 h-4 w-4" />
-                    )}
-                    {lang.label}
-                  </DropdownMenuItem>
-                ))
-              }
+              {langs.map((lang) => (
+                <DropdownMenuItem
+                  key={lang.value}
+                  onClick={() => changeLanguage(lang.value)}
+                  className={cn("relative pl-8", i18n.language === lang.value && "bg-accent")}
+                >
+                  {i18n.language === lang.value && <Check className="absolute left-2 h-4 w-4" />}
+                  {lang.label}
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
           <Button variant="outline" size="icon" onClick={toggleTheme}>
