@@ -1,0 +1,17 @@
+{
+  "title": {
+    "pal": "仙剑奇侠传",
+    "pal-new": "新仙剑奇侠传",
+    "swd-2e": "轩辕剑外传 - 枫之舞"
+  },
+  "subtitle": {
+    "general": "一般",
+    "character": "角色",
+    "inventory": "物品"
+  },
+  "action": {
+    "import": "输入",
+    "export": "输出",
+    "reset": "重制"
+  }
+}
