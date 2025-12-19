@@ -57,8 +57,8 @@ function CharacterCard({ id }: Props) {
       label: t(`${type}.0x${v.toString(16).padStart(4, "0")}`),
     }));
 
-  const abilityOptions: OptionType[] = getValues(availableAbilities, 'abilities');
-  const abilities: OptionType[] = getValues(char.abilities, 'abilities');
+  const abilityOptions: OptionType[] = getValues(availableAbilities, "abilities");
+  const abilities: OptionType[] = getValues(char.abilities, "abilities");
 
   const handleValueChange = (_values: ReadonlyArray<OptionType>, meta: ActionMeta<OptionType>) => {
     switch (meta.action) {
@@ -82,7 +82,7 @@ function CharacterCard({ id }: Props) {
       const values = createValues([range]);
       return {
         ...acc,
-        [key]: getValues(values, 'inventory'),
+        [key]: getValues(values, "inventory"),
       };
     },
     {} as { [k in EquipmentKey]: OptionType[] },
@@ -96,9 +96,9 @@ function CharacterCard({ id }: Props) {
         classNamePrefix="my-react-select"
         placeholder={t("abilityPlaceholder")}
         options={equipmentOptions[key]}
-        value={char.equipments[key] ? getValues([char.equipments[key]], 'inventory'): []}
+        value={char.equipments[key] ? getValues([char.equipments[key]], "inventory") : []}
         onChange={(e) => {
-          setEquipment(id, { key, value: parseInt(String(e?.value), 10) })
+          setEquipment(id, { key, value: parseInt(String(e?.value), 10) });
         }}
       />
     </div>
