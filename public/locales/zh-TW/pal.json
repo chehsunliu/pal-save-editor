@@ -6,6 +6,7 @@
   "abilityPlaceholder": "選擇...",
   "subtitle": {
     "stats": "狀態",
+    "equipments": "裝備",
     "abilities": "仙術"
   },
   "names": {
@@ -27,6 +28,14 @@
     "defense": "防禦",
     "speed": "身法",
     "luck": "吉運"
+  },
+  "equipments": {
+    "head": "頭戴",
+    "clock": "披掛",
+    "body": "身穿",
+    "hand": "手持",
+    "foot": "腳穿",
+    "accessories": "配帶"
   },
   "abilities": {
     "0x0127": "夢蛇",

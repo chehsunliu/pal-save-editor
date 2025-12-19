@@ -26,6 +26,10 @@ export const attrKeys = [
 
 type AttrKey = (typeof attrKeys)[number];
 
+export const equipmentKeys = ["head", "clock", "body", "hand", "foot", "accessories"] as const;
+
+export type EquipmentKey = (typeof equipmentKeys)[number];
+
 const addresses = {
   savingCount: 0x0000,
   huluValue: 0x0018,
@@ -46,6 +50,15 @@ const attrAddressOffsets: { [k in AttrKey]: number } = {
   luck: 0xb4,
 };
 
+const equipmentAddressOffset: { [k in EquipmentKey]: number } = {
+  head: 0x3c,
+  clock: 0x48,
+  body: 0x54,
+  hand: 0x60,
+  foot: 0x6c,
+  accessories: 0x78,
+};
+
 const abilityAddressOffset = 0x138;
 
 type Character = {
@@ -60,6 +73,14 @@ type Character = {
     defense: number;
     speed: number;
     luck: number;
+  };
+  equipments: {
+    head: number;
+    clock: number;
+    body: number;
+    hand: number;
+    foot: number;
+    accessories: number;
   };
   abilities: number[];
 };
@@ -81,6 +102,7 @@ type StatsContextType = {
   setHuluValue(huluValue: number): void;
   setMoney(money: number): void;
   setAttr(id: string, attr: { key: AttrKey; value: number }): void;
+  setEquipment(id: string, attr: { key: EquipmentKey; value: number }): void;
   appendAbility(id: string, value: number): void;
   removeAbility(id: string, value: number): void;
   setInventoryItem(value: number, usage: { count: number; used: number }): void;
@@ -99,6 +121,14 @@ const initialCharacter: Character = {
     defense: 0,
     speed: 0,
     luck: 0,
+  },
+  equipments: {
+    head: 0,
+    clock: 0,
+    body: 0,
+    hand: 0,
+    foot: 0,
+    accessories: 0,
   },
   abilities: [],
 };
@@ -129,6 +159,7 @@ const StatsContext = createContext<StatsContextType>({
   setHuluValue: () => {},
   setMoney: () => {},
   setAttr: () => {},
+  setEquipment: () => {},
   appendAbility: () => {},
   removeAbility: () => {},
   setInventoryItem: () => {},
@@ -158,6 +189,11 @@ export function StatsProvider({ children, ...props }: StatsProviderProps) {
       // Stats
       Object.entries(char.attrs).forEach(([attrKey, attrValue]) => {
         bufOut.setUint16(addr + attrAddressOffsets[attrKey as AttrKey], attrValue, true);
+      });
+
+      // Equipment
+      Object.entries(char.equipments).forEach(([equipmentKey, equipmentValue]) => {
+        bufOut.setUint16(addr + equipmentAddressOffset[equipmentKey as EquipmentKey], equipmentValue, true);
       });
 
       // Abilities
@@ -225,13 +261,18 @@ export function StatsProvider({ children, ...props }: StatsProviderProps) {
             attrKeys.map((key) => [key, bufViewer.getUint16(addr + attrAddressOffsets[key], true)]),
           ) as { [k in AttrKey]: number };
 
+          // Equipments
+          const equipments = Object.fromEntries(
+            equipmentKeys.map((key) => [key, bufViewer.getUint16(addr + equipmentAddressOffset[key], true)]),
+          ) as { [k in EquipmentKey]: number };
+
           // Abilities
           const abilityAddr = addr + abilityAddressOffset;
           const abilities = Array.from(Array(32).keys())
             .map((i) => bufViewer.getUint16(abilityAddr + i * 2 * 6, true))
             .filter((a) => a !== 0);
 
-          return [id, { attrs, abilities }];
+          return [id, { attrs, abilities, equipments }];
         }),
       ),
       inventory,
@@ -258,6 +299,19 @@ export function StatsProvider({ children, ...props }: StatsProviderProps) {
         [id]: {
           ...stats.chars[id],
           attrs: { ...stats.chars[id].attrs, [attr.key]: attr.value },
+        },
+      },
+    });
+  };
+
+  const setEquipment = (id: string, equipment: { key: EquipmentKey; value: number }) => {
+    setStats({
+      ...stats,
+      chars: {
+        ...stats.chars,
+        [id]: {
+          ...stats.chars[id],
+          equipments: { ...stats.chars[id].equipments, [equipment.key]: equipment.value },
         },
       },
     });
@@ -298,6 +352,7 @@ export function StatsProvider({ children, ...props }: StatsProviderProps) {
     setHuluValue,
     setMoney,
     setAttr,
+    setEquipment,
     appendAbility,
     removeAbility,
     setInventoryItem,
